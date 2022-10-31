@@ -5,9 +5,6 @@ HOW TO INSTALL!!!!
 FOR LINUX:
 
 1. Compile Space Terminal into an executable file
-2. After adding libraries add the following code:
-os.system("clear");
-os.system("sudo -s")
 Use!
 
 FOR WINDOWS:
