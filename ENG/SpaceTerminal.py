@@ -227,3 +227,7 @@ try:
     #==========================================================================================================================
 except KeyboardInterrupt:
     print("Exit...\n\n\n")
+except ModuleNotFoundError:
+    while True:
+        clear()
+        input("Modules are not installed or not working properly. Fix it please, as I do not know how :(\n")
