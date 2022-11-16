@@ -7,43 +7,12 @@ try:
         if name == 'nt': c = 'cls'
         os.system(c)
     clear()
-    if name == 'nt':
-        try:
-            print("Нажмите CTRL + C для пропуска установки/обновления библиотек\nУ вас есть 3 секунды")
-            clear()
-            time.sleep(3)
-            print("[ lib_platform ]\n")
-            os.system("pip install lib_platform")
-            print("[ pyqadmin ]\n\n")
-            os.system("pip install pyqadmin")
-            print("[ colorama ]\n")
-            os.system("pip install colorama")
-        except KeyboardInterrupt:
-            pass
-    elif name == 'posix':
-        try:
-            print("Нажмите CTRL + C для пропуска установки/обновления библиотек\nУ вас есть 3 секунды")
-            clear()
-            time.sleep(3)
-            os.system("sudo apt install python3-pip")
-            print("[ lib_platform ]\n")
-            os.system("pip install lib_platform")
-            print("[ pyqadmin ]\n\n")
-            os.system("pip install pyqadmin")
-            print("[ colorama ]\n")
-            os.system("pip install colorama")
-        except KeyboardInterrupt:
-            pass
     import lib_platform
     from colorama import init, Fore
     from colorama import Back
     from pyqadmin import admin 
     from colorama import Style
     from pathlib import Path
-    try:
-        pass
-    except KeyboardInterrupt():
-        clear()
     #==========================================================================================================================
 
     def runfile(x):
@@ -233,8 +202,56 @@ try:
 
     #==========================================================================================================================
 except KeyboardInterrupt:
-    print("Exit...\n\n\n")
+            if name == 'nt':
+                clear()
+                print("Установка модулей...")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("Все модули установлены!\n")
+            elif name == 'posix':
+                clear()
+                os.system("sudo apt install python3-pip")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("[  OK  ]  Все модули установлены!\n")
 except ModuleNotFoundError:
     while True:
         clear()
-        input("Модули не установлены или работают не правильно. Почините пожалуйста, так как я не умею :(\n")
+        ask = input("Модули не установлены или работают не правильно. Нажмите при запуске Ctrl + C для установки всех модулей\nИли установите их сейчас\nУстановить? [y/n] $:")
+        if ask == 'y' or ask == 'Y':
+            if name == 'nt':
+                clear()
+                print("Установка модулей...")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("Все модули установлены!\n")
+            elif name == 'posix':
+                clear()
+                os.system("sudo apt install python3-pip")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("[  OK  ]  Все модули установлены!\n")
+        elif ask == 'n' or ask == 'N':
+            sys.exit()
+        else:
+            pass
