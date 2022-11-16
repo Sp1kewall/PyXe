@@ -7,31 +7,6 @@ try:
         if name == 'nt': c = 'cls'
         os.system(c)
     clear()
-    if name == 'nt':
-        try:
-            clear()
-            time.sleep(3)
-            print("[ lib_platform ]\n")
-            os.system("pip install lib_platform")
-            print("[ pyqadmin ]\n\n")
-            os.system("pip install pyqadmin")
-            print("[ colorama ]\n")
-            os.system("pip install colorama")
-        except KeyboardInterrupt:
-            pass
-    elif name == 'posix':
-        try:
-            clear()
-            time.sleep(3)
-            os.system("sudo apt install python3-pip")
-            print("[ lib_platform ]\n")
-            os.system("pip install lib_platform")
-            print("[ pyqadmin ]\n\n")
-            os.system("pip install pyqadmin")
-            print("[ colorama ]\n")
-            os.system("pip install colorama")
-        except KeyboardInterrupt:
-            pass
     import lib_platform
     from colorama import init, Fore
     from colorama import Back
@@ -226,8 +201,57 @@ try:
 
     #==========================================================================================================================
 except KeyboardInterrupt:
-    print("Exit...\n\n\n")
+            if name == 'nt':
+                clear()
+                print("Module installation...")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("All modules are installed!\n")
+            elif name == 'posix':
+                clear()
+                print("Module installation...")
+                os.system("sudo apt install python3-pip")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("All modules are installed!\n")
 except ModuleNotFoundError:
-    while True:
-        clear()
-        input("Modules are not installed or not working properly. Fix it please, as I do not know how :(\n")
+        while True:
+            clear()
+            ask = input("Modules are not installed or not working properly. Press Ctrl + C at startup to install all modules\nOr install them now\nInstall? [y/n] $:")
+            if name == 'nt':
+                clear()
+                print("Module installation...")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("All modules are installed!\n")
+            elif name == 'posix':
+                clear()
+                print("Module installation...")
+                os.system("sudo apt install python3-pip")
+                print("\n\n[ lib_platform ]\n\n")
+                os.system("pip install lib_platform")
+                print("\n\n[ pyqadmin ]\n\n")
+                os.system("pip install pyqadmin")
+                print("\n\n[ colorama ]\n\n")
+                os.system("pip install colorama")
+                clear()
+                input("All modules are installed!\n")
+            elif ask == 'n' or ask == 'N':
+                sys.exit()
+            else:
+                pass
