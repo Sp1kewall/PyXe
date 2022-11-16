@@ -180,7 +180,7 @@ try:
 
         elif lex == 'ver' or lex == 'VER':
             print("""
-        GNU Space Terminal
+        Space Terminal
         Made by Space Core
         
         ====================
