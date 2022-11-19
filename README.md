@@ -6,7 +6,7 @@ Space Terminal
 Just my terminal
 
 Training:
-To update the modules, press Ctrl + C
+To update the modules, press Ctrl + C                                                           
 To get a list of all commands type the HELP or help command
 
 
@@ -21,7 +21,7 @@ Space Terminal
 Просто мой терминал
 
 Обучение:
-Для обновления модулей, нажмите Ctrl + C
+Для обновления модулей, нажмите Ctrl + C                                                           
 Чтобы получить список всех команд напишите команду HELP или help
 
 
