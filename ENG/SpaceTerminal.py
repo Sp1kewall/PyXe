@@ -1,7 +1,8 @@
 try:
     #==========================================================================================================================
     import os, sys, time
-    from os import *
+    from os import name
+    from os import path
     def clear():
         c = 'clear'
         if name == 'nt': c = 'cls'
@@ -180,7 +181,7 @@ try:
 
         elif lex == 'ver' or lex == 'VER':
             print("""
-        Space Terminal
+        GNU Space Terminal
         Made by Space Core
         
         ====================
