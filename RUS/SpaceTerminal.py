@@ -31,6 +31,11 @@ while True:
                     os.startfile(x)
                 except:
                     print(x + " не команда и не исполняемый файл")
+            elif name == 'mac':
+                try:
+                    os.startfile(x)
+                except:
+                    print(x + " не команда и не исполняемый файл")
         def file(arg):
             if name == 'nt':
                     try:
@@ -70,12 +75,17 @@ while True:
                             print("Файл " + arg + " не может быть найден или редактирован")
 
 
-            elif name == 'posix':
+            elif name == 'posix' or name == 'mac':
                 os.system("nano " + arg)
     #==========================================================================================================================
         os.system("title Space Terminal")
         init(autoreset=True)
-        cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "%" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' ~' + Fore.WHITE + '$:')
+        if name == 'mac':
+            cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' ~' + Fore.CYAN + '%:')
+        elif name == 'posix':
+            cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' ~' + Fore.CYAN + '$:' + Fore.RESET)
+        elif name == 'nt':
+            cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' =' + Fore.WHITE + '>>')
 
         os.chdir(lib_platform.path_userhome)
         clear()
@@ -101,26 +111,61 @@ while True:
         def shell(lex,arg):
 
             if lex == 'help' or lex == 'HELP':
-                print("<HELP     > вывести список команд")
-                print("<SAY      > вывести какой-то текст")
-                print("<CLEAR    > отчистить экран")
-                print("<LS       > просмотреть содержимое текущей директории")
-                print("<WIA      > просмотреть путь к текущей директории")
-                print("<CD       > сменить директорию")
-                print("<CRCTL    > создать директорию")
-                print("<RMCTL    > удалить директорию")
-                print("<RM       > удалить выбранный файл")
-                print("<FILE     > открыть текстовый редактор")
-                print("<TOUCH    > создать файл без редактирования")
-                print("<CAT      > вывести содержимое файла")
-                print("<VER      > просмотреть версию терминала")
+                if arg == '--say':
+                    print("SAY - Команда для вывода текста/математического действия на экран\nТекст или математическое действие указывать как аргумент\n\n")
+                elif arg == '--clear':
+                    print("CLEAR - Команда для отчистки экрана\n\n")
+                elif arg == '--ls':
+                    print("LS - Команда для просмотра содержимого директории. Если объект выделен зеленым, значит это директория\n\n")
+                elif arg == '--wia':
+                    print("WIA - Команда для вывода текущего пути\n\n")
+                elif arg == '--cd':
+                    print("CD - Команда для смены директории\nИмя директории указывать как аргумент\n\n")
+                elif arg == '--crctl':
+                    print("CRCTL - Команда для создания директории\nИмя директории указывать как аргумент\n\n")
+                elif arg == '--rmctl':
+                    print("CRCTL - Команда для удаления директории\nИмя директории указывать как аргумент\n\n")
+                elif arg == '--rm':
+                    print("RM - Команда для удаления файла\nИмя файла указывать как аргумент")
+                elif arg == '--file':
+                    print("FILE - Команда для открытия текстового редактора (в macOS и Linux это nano, в Windows это встроеный редактор\nИмя файла указывать как аргумент\n\n")
+                elif arg == '--touch':
+                    print("TOUCH - Команда для создания файла без редактирования\nИмя файла указывать как аргумент\n\n")
+                elif arg == '--cat':
+                    print("CAT - Команда для вывода содержимого файла\nИмя файла указывать как аргумент\n\n")
+                elif arg == "--ver":
+                    print("VER - Ккоманда для вывода информации о версии\n\n")
+                else:
+                    print("<HELP     > вывести список команд")
+                    print("<SAY      > вывести какой-то текст")
+                    print("<CLEAR    > отчистить экран")
+                    print("<LS       > просмотреть содержимое текущей директории")
+                    print("<WIA      > просмотреть путь к текущей директории")
+                    print("<CD       > сменить директорию")
+                    print("<CRCTL    > создать директорию")
+                    print("<RMCTL    > удалить директорию")
+                    print("<RM       > удалить выбранный файл")
+                    print("<FILE     > открыть текстовый редактор")
+                    print("<TOUCH    > создать файл без редактирования")
+                    print("<CAT      > вывести содержимое файла")
+                    print("<VER      > просмотреть версию терминала")
             elif lex == 'say' or lex == 'SAY':
-                print(arg)
+                try:
+                    print(eval(arg))
+                except SyntaxError:
+                    print(arg)
+                except ZeroDivisionError:
+                    print("На ноль делить нельзя")
+                except NameError:
+                    print(arg)
 
             elif lex == 'ls' or lex == 'LS':
                 rez = sorted(os.listdir("."))
                 for n, item in enumerate(rez):
-                    print(n+1, item)
+                    if os.path.isdir(item):
+                        print(Back.GREEN + item)
+                    elif os.path.isfile(item):
+                        print(item)
 
             elif lex == 'wia' or lex == 'WIA':
                 print(os.getcwd())
@@ -139,7 +184,7 @@ while True:
                 try:
                     os.mkdir(arg)
                 except OSError:
-                    print("Дирректория не может быть названа " + arg)
+                    print("Директория не может быть названа " + arg)
             elif lex == 'rmctl' or lex == 'RMCTL':
                     try:
                         os.rmdir(arg)
@@ -178,23 +223,27 @@ while True:
                 if name == 'nt':
                     print("Windows")
                 elif lex == 'posix':
-                    print("Linux")
+                    print("UNIX Linux")
+                elif lex == 'mac':
+                    print("UNIX OS X")
 
             elif lex == 'ver' or lex == 'VER':
                 print("""
             GNU Space Terminal
             Сделано Space Core
-
             ====================
-            Версия терминала 1.4
+            Версия терминала 1.6
         """)
 
             elif lex == 'exit' or lex == 'EXIT':
-                print("Выход...\n\n\n")
+                print("Выход...\nПока! Хорошего дня! :)\n\n")
                 sys.exit()
 
             else:
-                runfile(user)
+                try:
+                    print(eval(arg))
+                except SyntaxError:
+                    runfile(user)
     #==========================================================================================================================
         while True:
             user = input(cursor)
@@ -204,20 +253,10 @@ while True:
 
     #==========================================================================================================================
     except KeyboardInterrupt:
+                clear()
+                print("Установка модулей...")
                 if name == 'nt':
                     clear()
-                    print("Установка модулей...")
-                    print("\n\n[ lib_platform ]\n\n")
-                    os.system("pip install lib_platform")
-                    print("\n\n[ pyqadmin ]\n\n")
-                    os.system("pip install pyqadmin")
-                    print("\n\n[ colorama ]\n\n")
-                    os.system("pip install colorama")
-                    clear()
-                    input("Все модули установлены!\n")
-                elif name == 'posix':
-                    clear()
-                    os.system("sudo apt install python3-pip")
                     print("\n\n[ lib_platform ]\n\n")
                     os.system("pip install lib_platform")
                     print("\n\n[ pyqadmin ]\n\n")
@@ -226,14 +265,38 @@ while True:
                     os.system("pip install colorama")
                     clear()
                     input("[  OK  ]  Все модули установлены!\n")
+                elif name == 'posix':
+                    clear()
+                    var1 = input("Установить pip?\n(y/n)$:")
+                    if var1 == 'y' or var1 == "Y":
+                        os.system("sudo apt install python3-pip")
+                    else:
+                        pass
+                    print("\n\n[ lib_platform ]\n\n")
+                    os.system("pip install lib_platform")
+                    print("\n\n[ pyqadmin ]\n\n")
+                    os.system("pip install pyqadmin")
+                    print("\n\n[ colorama ]\n\n")
+                    os.system("pip install colorama")
+                    clear()
+                    input("[  OK  ]  Все модули установлены!\n")
+                elif name == 'mac':
+                    print("\n\n[ lib_platform ]\n\n")
+                    os.system("pip3 install lib_platform")
+                    print("\n\n[ pyqadmin ]\n\n")
+                    os.system("pip3 install pyqadmin")
+                    print("\n\n[ colorama ]\n\n")
+                    os.system("pip3 install colorama")
+                    clear()
+                    input("[  OK  ]  Все модули установлены!\n")
     except ModuleNotFoundError:
         while True:
             clear()
             ask = input("Модули не установлены или работают не правильно. Нажмите при запуске Ctrl + C для установки всех модулей\nИли установите их сейчас\nУстановить? [y/n] $:")
             if ask == 'y' or ask == 'Y':
+                print("Установка модулей...")
                 if name == 'nt':
                     clear()
-                    print("Установка модулей...")
                     print("\n\n[ lib_platform ]\n\n")
                     os.system("pip install lib_platform")
                     print("\n\n[ pyqadmin ]\n\n")
@@ -241,16 +304,29 @@ while True:
                     print("\n\n[ colorama ]\n\n")
                     os.system("pip install colorama")
                     clear()
-                    input("Все модули установлены!\n")
+                    input("[  OK  ]  Все модули установлены!\n")
                 elif name == 'posix':
                     clear()
-                    os.system("sudo apt install python3-pip")
+                    var1 = input("Установить pip?\n(y/n)$:")
+                    if var1 == 'y' or var1 == "Y":
+                        os.system("sudo apt install python3-pip")
+                    else:
+                        pass
                     print("\n\n[ lib_platform ]\n\n")
                     os.system("pip install lib_platform")
                     print("\n\n[ pyqadmin ]\n\n")
                     os.system("pip install pyqadmin")
                     print("\n\n[ colorama ]\n\n")
                     os.system("pip install colorama")
+                    clear()
+                    input("[  OK  ]  Все модули установлены!\n")
+                elif name == 'mac':
+                    print("\n\n[ lib_platform ]\n\n")
+                    os.system("pip3 install lib_platform")
+                    print("\n\n[ pyqadmin ]\n\n")
+                    os.system("pip3 install pyqadmin")
+                    print("\n\n[ colorama ]\n\n")
+                    os.system("pip3 install colorama")
                     clear()
                     input("[  OK  ]  Все модули установлены!\n")
             elif ask == 'n' or ask == 'N':
