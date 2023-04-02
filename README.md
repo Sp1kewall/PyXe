@@ -1,21 +1,3 @@
-<div id="header" align="center">
-  <img src="https://memepedia.ru/wp-content/uploads/2023/01/kot-dingus-mem-768x512.jpg" width="100"/>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 1.8
 
 
