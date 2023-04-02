@@ -1,3 +1,21 @@
+<div id="header" align="center">
+  <img src="https://translated.turbopages.org/proxy_u/en-ru.ru.ea784c20-64290c5c-3ded5e1b-74722d776562/https/upload.wikimedia.org/wikipedia/en/c/cb/Placeholder_logo.png" width="100"/>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1.8
 
 
