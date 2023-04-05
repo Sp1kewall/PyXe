@@ -21,6 +21,7 @@ while True:
         from colorama import Style
         from pathlib import Path
         import zipfile
+        import shutil
     
 
         try:
@@ -243,8 +244,11 @@ while True:
                             print("Директория " + arg + " не найдена")
                             errors.rus.dir_is_not_exist(arg)
                         except OSError:
-                            print("Директория не может быть названа " + arg)
-                            errors.rus.dir_name_error(arg)
+                            try:
+                                shutil.rmtree('Space-Terminal-main')
+                            except:
+                                print("Директория не может быть названа " + arg)
+                                errors.rus.dir_name_error(arg)
                 elif lex == 'file' or lex == 'FILE':
                     file(arg)
                 elif lex == 'cat' or lex == 'CAT':
@@ -553,8 +557,11 @@ while True:
                             print("Directory " + arg + " not exist")
                             errors.eng.dir_is_not_exist(arg)
                         except OSError:
-                            print("Directory cannot be named " + arg)
-                            errors.eng.dir_name_error(arg)
+                            try:
+                                shutil.rmtree('Space-Terminal-main')
+                            except:
+                                print("Directory cannot be named " + arg)
+                                errors.eng.dir_name_error(arg)
                 elif lex == 'file' or lex == 'FILE':
                     file(arg)
                 elif lex == 'cat' or lex == 'CAT':
