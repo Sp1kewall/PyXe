@@ -30,7 +30,6 @@ while True:
             lang = lang0.read()
         except:
             os.startfile('mklang.py')
-            input('Press Enter')
             sys.exit()
 
         if lang == 'rus': #Тут русский | Russian here
@@ -54,19 +53,18 @@ while True:
                             os.startfile(x + '.exe')
                         except:
                             print(x + " не команда и не исполняемый файл")
-                            errors.rus.not_command(user)
                 elif name == 'posix':
                     try:
                         os.startfile(x)
                     except:
                         print(x + " не команда и не исполняемый файл")
-                        errors.rus.not_command(user)
+
                 elif name == 'mac':
                     try:
                         os.startfile(x)
                     except:
                         print(x + " не команда и не исполняемый файл")
-                        errors.rus.not_command(user)
+
             def file(arg):
                 if name == 'nt':
                         try:
@@ -104,7 +102,7 @@ while True:
                             file.close()
                         except FileNotFoundError:
                                 print("Файл " + arg + " не может быть найден или редактирован")
-                                errors.rus.cant_read_error(arg)
+
 
 
                 elif name == 'posix' or name == 'mac':
@@ -204,7 +202,7 @@ while True:
                         print(arg)
                     except ZeroDivisionError:
                         print("На ноль делить нельзя")
-                        errors.rus.zero_dev()
+
                     except NameError:
                         print(arg)
 
@@ -226,29 +224,29 @@ while True:
                             os.chdir(arg)
                         except FileNotFoundError:
                             print("Директория " + arg + " не найдена")
-                            errors.rus.dir_is_not_exist(arg)
+
                         except:
                             print("Произошла непредвиденная ошибка :/")
-                            errors.rus.idk()
+
 
                 elif lex == 'crctl' or lex == 'CRCTL':
                     try:
                         os.mkdir(arg)
                     except OSError:
                         print("Директория не может быть названа " + arg)
-                        errors.rus.dir_name_error(arg)
+
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
                             os.rmdir(arg)
                         except FileNotFoundError:
                             print("Директория " + arg + " не найдена")
-                            errors.rus.dir_is_not_exist(arg)
+
                         except OSError:
                             try:
                                 shutil.rmtree('Space-Terminal-main')
                             except:
                                 print("Директория не может быть названа " + arg)
-                                errors.rus.dir_name_error(arg)
+
                 elif lex == 'file' or lex == 'FILE':
                     file(arg)
                 elif lex == 'cat' or lex == 'CAT':
@@ -258,10 +256,10 @@ while True:
                         f.close()
                     except UnicodeDecodeError:
                         print("Файл " + arg + " не может быть найден, прочитан или отредактирован")
-                        errors.rus.cant_read_error(arg)
+
                     except FileNotFoundError:
                         print("Файл " + arg + " не найден")
-                        errors.rus.no_file_error(arg)
+
                 elif lex == '':
                     pass
                 elif lex == 'rm' or lex == 'RM':
@@ -269,7 +267,7 @@ while True:
                             os.remove(arg)
                         except FileNotFoundError:
                             print("Файл " + arg + " не найден")
-                            errors.rus.no_file_error(arg)
+
 
                 elif lex == 'user' or lex == 'USER':
                     print(Fore.GREEN + lib_platform.username)
@@ -283,7 +281,7 @@ while True:
                             lol.close()
                     except FileNotFoundError:
                         print("Файл " + arg + " не найден")
-                        errors.rus.no_file_error(arg)
+
 
                 elif lex == 'cname' or lex == 'CNAME':
                     if name == 'nt':
@@ -323,7 +321,7 @@ while True:
                         try:
                             runfile(user)
                         except:
-                            errors.rus.idk()
+                            print("Произошла неизвестная ошибка :/")
         
             while True:
                 user = input(cursor)
@@ -367,19 +365,19 @@ while True:
                             os.startfile(x + '.exe')
                         except:
                             print(x + " is not a command or an executable")
-                            errors.eng.not_command(user)
+
                 elif name == 'posix':
                     try:
                         os.startfile(x)
                     except:
                         print(x + " is not a command or an executable")
-                        errors.eng.not_command(user)
+
                 elif name == 'mac':
                     try:
                         os.startfile(x)
                     except:
                         print(x + " is not a command or an executable")
-                        errors.eng.not_command(user)
+
             def file(arg):
                 if name == 'nt':
                         try:
@@ -417,7 +415,6 @@ while True:
                             file.close()
                         except FileNotFoundError:
                                 print("File " + arg + " cannot be found or edited")
-                                errors.eng.cant_read_error(arg)
 
 
                 elif name == 'posix' or name == 'mac':
@@ -517,7 +514,6 @@ while True:
                         print(arg)
                     except ZeroDivisionError:
                         print("Can't divide by zero")
-                        errors.eng.zero_dev()
                     except NameError:
                         print(arg)
 
@@ -539,29 +535,24 @@ while True:
                             os.chdir(arg)
                         except FileNotFoundError:
                             print("Directory " + arg + " not found")
-                            errors.eng.dir_is_not_exist(arg)
                         except:
                             print("An unexpected error has occurred :/")
-                            errors.eng.idk()
 
                 elif lex == 'crctl' or lex == 'CRCTL':
                     try:
                         os.mkdir(arg)
                     except OSError:
                         print("Directory cannot be named " + arg)
-                        errors.eng.dir_name_error(arg)
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
                             os.rmdir(arg)
                         except FileNotFoundError:
                             print("Directory " + arg + " not exist")
-                            errors.eng.dir_is_not_exist(arg)
                         except OSError:
                             try:
                                 shutil.rmtree('Space-Terminal-main')
                             except:
                                 print("Directory cannot be named " + arg)
-                                errors.eng.dir_name_error(arg)
                 elif lex == 'file' or lex == 'FILE':
                     file(arg)
                 elif lex == 'cat' or lex == 'CAT':
@@ -571,10 +562,8 @@ while True:
                         f.close()
                     except UnicodeDecodeError:
                         print("File " + arg + " cannot be found, read or edited")
-                        errors.eng.cant_read_error(arg)
                     except FileNotFoundError:
                         print("File " + arg + " not found")
-                        errors.eng.no_file_error(arg)
                 elif lex == '':
                     pass
                 elif lex == 'rm' or lex == 'RM':
@@ -582,7 +571,6 @@ while True:
                             os.remove(arg)
                         except FileNotFoundError:
                             print("File " + arg + " not found")
-                            errors.eng.no_file_error(arg)
 
                 elif lex == 'user' or lex == 'USER':
                     print(Fore.GREEN + lib_platform.username)
@@ -596,7 +584,6 @@ while True:
                             lol.close()
                     except FileNotFoundError:
                         print("File " + arg + " not found")
-                        errors.eng.no_file_error(arg)
 
                 elif lex == 'cname' or lex == 'CNAME':
                     if name == 'nt':
