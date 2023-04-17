@@ -1,5 +1,5 @@
 ver = "1.8"
-discord = "ULTRAKILL </>#8097"
+discord = "Рома сын камаза#8097"
 
 
 while True:
