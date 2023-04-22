@@ -20,5 +20,11 @@ $:""")
     lang01.close()
 
 os.chdir('st')
-os.startfile('terminal.py')
-sys.exit()
+if os.name == 'nt':
+    os.startfile('terminal.py')
+    sys.exit()
+else:
+    if lang_ask == '2':
+        input('Now you need to run the terminal.py file in the "st" directory')
+    elif lang_ask == '1':
+        input('Теперь вам нужно запустить файл terminal.py в директории "st"')
