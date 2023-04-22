@@ -1,8 +1,0 @@
-ENG
-
-To do the initial setup on macOS/Linux you need to first run the mklang.py file and then the terminal.py file
-
-
-RUS
-
-Чтобы провести первичную настройку на macOS/Linux вам нужно сначала запустить файл mklang.py, а затем файл terminal.py
