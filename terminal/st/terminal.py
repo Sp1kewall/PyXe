@@ -1,4 +1,4 @@
-ver = "1.8"
+ver = "1.9"
 discord = "Рома сын камаза#8097"
 
 
@@ -22,15 +22,27 @@ while True:
         from pathlib import Path
         import zipfile
         import shutil
-    
+
+        os.chdir('..')
+        if os.path.isfile("settings/cdir.txt"):
+                cdir0 = open("settings/cdir.txt", "r")
+                cdir = cdir0.read()
+        else:
+            lol = open("settings/cdir.txt", 'w')
+            lol.writelines(os.getcwd())
+            lol.close()
+            cdir0 = open("settings/cdir.txt", "r")
+            cdir = cdir0.read()
 
         try:
-            os.chdir('..')
             lang0 = open('settings/lang.txt', 'r')
             lang = lang0.read()
         except:
-            os.startfile('mklang.py')
-            sys.exit()
+            if name == 'nt':
+                os.startfile('mklang.py')
+                sys.exit()
+            else:
+                input("You need to run the mklang.py file at " + cdir + "\nВам нужно запустить файл mklang.py в папке " + cdir)
 
         if lang == 'rus': #Тут русский | Russian here
 
@@ -110,6 +122,11 @@ while True:
         
             os.system("title Space Terminal")
 
+            def hstry():
+                with open(cdir + '/history', 'a') as hst:
+                    hst.writelines('\n' + user)
+                hst.close()
+
 
             init(autoreset=True)
             if name == 'mac':
@@ -119,16 +136,6 @@ while True:
             elif name == 'nt':
                 cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' =' + Fore.WHITE + '>>')
 
-
-            if os.path.isfile("settings/cdir.txt"):
-                    cdir0 = open("settings/cdir.txt", "r")
-                    cdir = cdir0.read()
-            else:
-                lol = open("settings/cdir.txt", 'w')
-                lol.writelines(os.getcwd())
-                lol.close()
-                cdir0 = open("settings/cdir.txt", "r")
-                cdir = cdir0.read()
 
             os.chdir(lib_platform.path_userhome)
             clear()
@@ -179,7 +186,11 @@ while True:
                     elif arg == "--ver":
                         print("VER - Ккоманда для вывода информации о версии\n\n")
                     elif arg == '--upt':
-                        print("[BETA] UPT - Команда для загрузки новой версии Space Terminal на ваш ПК\nВАЖНО !ОБНОВЛЕНИЕ НЕ ВЫПОЛНЯЕТСЯ АВТОМАТИЧЕСКИ!\n\n")
+                        print("UPT - Команда для загрузки новой версии Space Terminal на ваш ПК\nВАЖНО !ОБНОВЛЕНИЕ НЕ ВЫПОЛНЯЕТСЯ АВТОМАТИЧЕСКИ!\n\n")
+                    elif arg == '--cp':
+                        print("CP - Команда для копирования файла из одной директории в другую (если во втором аргументе указан файл, то в него скопируется содержимое первого аргумена)\nВ первом аргументе указывать копируемый файл. Во втором аргументе указывать конечный путь\n\n")
+                    elif arg == '--wget':
+                        print("WGET - Команда для скачивания файла из интернета\nВ аргументе указывать ссылку на скачивание\n\n")
                     else:
                         print("<HELP     > вывести список команд")
                         print("<SAY      > вывести какой-то текст")
@@ -193,7 +204,9 @@ while True:
                         print("<FILE     > открыть текстовый редактор")
                         print("<TOUCH    > создать файл без редактирования")
                         print("<CAT      > вывести содержимое файла")
-                        print("<UPT      > Загрузить новую версию Space Terminal ")
+                        print("<UPT      > загрузить новую версию Space Terminal")
+                        print("<CP       > скопировать файл в какое-то место или файл")
+                        print('<WGET     > скачать файл из интернета')
                         print("<VER      > просмотреть версию терминала")
                 elif lex == 'say' or lex == 'SAY':
                     try:
@@ -237,14 +250,11 @@ while True:
 
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
-                            os.rmdir(arg)
+                            shutil.rmtree(arg)
                         except FileNotFoundError:
                             print("Директория " + arg + " не найдена")
 
                         except OSError:
-                            try:
-                                shutil.rmtree('Space-Terminal-main')
-                            except:
                                 print("Директория не может быть названа " + arg)
 
                 elif lex == 'file' or lex == 'FILE':
@@ -297,18 +307,41 @@ while True:
                     os.chdir("..")
                     download_file('https://github.com/SpaceCoreOfficial/Space-Terminal/archive/refs/heads/main.zip')
                     os.chdir("utilities")
-                    os.startfile("download.py")
-                    sys.exit()
+                    if name == 'nt':
+                        os.startfile("download.py")
+                        sys.exit()
+                    else:
+                        os.system('python3 download.py')
+
+
+                elif lex == 'cp':
+                    try:
+                        user0 = user.split(' ')
+                        shutil.copy2(user0[1], user0[2])
+                    except FileNotFoundError:
+                        print("Я не нашёл элементов " + user0[1] + " или " + user0[2])
+                    except IndexError:
+                        print("Недостаточно аргументов!")
+
+
+
+                elif lex == 'wget' or lex == 'WGET':
+                    print("Пытаюсь скачать файл...\n")
+                    try:
+                        download_file(arg)
+                        print("Файл скачан!\n")
+                    except:
+                        print("Не удалось скачать файл. Возможно он повреждён или у вас нет подключение к интернету\n")
                     
 
                 elif lex == 'ver' or lex == 'VER':
                     print("""
-                    |OpenSource|
-                  |Space Terminal|
+                |OpenSource        |
+                |Space Terminal    |
                 |Сделано Space Core|
 
                 ____________________
-                    Версия """ + ver + "\n")
+                     Версия """ + ver + "\n\n")
 
                 elif lex == 'exit' or lex == 'EXIT':
                     print("Выход...\nПока! Хорошего дня! :)\n\n")
@@ -327,6 +360,13 @@ while True:
                 user = input(cursor)
                 if lexer(user): break
 
+                elif os.path.isfile(cdir + '/history'):
+                    hstry()
+                else:
+                    hh = open(cdir + '/history', 'w')
+
+                    hh.close()
+                    hstry()
 
 
         
@@ -489,9 +529,13 @@ while True:
                     elif arg == '--cat':
                         print("CAT - Command to display the contents of a file\nThe file name is given as an argument\n\n")
                     elif arg == '--upt':
-                        print("[BETA] UPT - The command to download the new version of Space Terminal to your PC\nIMPORTANT! UPDATE IS NOT PERFORMED AUTOMATICALLY!\n\n")
+                        print("UPT - The command to download the new version of Space Terminal to your PC\nIMPORTANT! UPDATE IS NOT PERFORMED AUTOMATICALLY!\n\n")
                     elif arg == "--ver":
                         print("VER - Command to display version information\n\n")
+                    elif arg == '--cp':
+                        print("CP - Command for copying a file from one directory to another (if a file is specified in the second argument, then the contents of the first argument will be copied to it)\nSpecify the file to be copied as the first argument. Specify the final path in the second argument\n\n")
+                    elif arg == '--wget':
+                        print("WGET - Command to download a file from the Internet\nSpecify the download link in the argument\n\n")
                     else:
                         print("<HELP     > list commands")
                         print("<SAY      > output some text")
@@ -506,6 +550,8 @@ while True:
                         print("<TOUCH    > create file without editing")
                         print("<CAT      > output the contents of the file")
                         print("<UPT      > Download the new version of Space Terminal")
+                        print("<CP       > copy the file to some location or file")
+                        print('<WGET     > download file from internet')
                         print("<VER      > view terminal version")
                 elif lex == 'say' or lex == 'SAY':
                     try:
@@ -545,13 +591,11 @@ while True:
                         print("Directory cannot be named " + arg)
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
-                            os.rmdir(arg)
+                            shutil.rmtree(arg)
                         except FileNotFoundError:
-                            print("Directory " + arg + " not exist")
+                            print("Directory " + arg + " not found")
+
                         except OSError:
-                            try:
-                                shutil.rmtree('Space-Terminal-main')
-                            except:
                                 print("Directory cannot be named " + arg)
                 elif lex == 'file' or lex == 'FILE':
                     file(arg)
@@ -603,10 +647,28 @@ while True:
                     sys.exit()
                     
 
+                elif lex == 'cp':
+                    try:
+                        user0 = user.split(' ')
+                        shutil.copy2(user0[1], user0[2])
+                    except FileNotFoundError:
+                        print("I can't found " + user0[1] + " or " + user0[2])
+                    except IndexError:
+                        print("Not enough arguments!")
+
+                elif lex == 'wget' or lex == 'WGET':
+                    print("Trying to download a file...\n")
+                    try:
+                        download_file(arg)
+                        print("File downloaded!\n")
+                    except:
+                        print("Failed to download file. Maybe it's damaged or you don't have an internet connection\n")
+                    
+
                 elif lex == 'ver' or lex == 'VER':
                     print("""
-                |OpenSource|
-              |Space Terminal|
+            |OpenSource|
+            |Space Terminal|
             |Made by Space Core|
             
             ____________________
@@ -628,6 +690,14 @@ while True:
             while True:
                 user = input(cursor)
                 if lexer(user): break
+
+                elif os.path.isfile(cdir + '/history'):
+                    hstry()
+                else:
+                    hh = open(cdir + '/history', 'w')
+
+                    hh.close()
+                    hstry()
 
 
 
@@ -835,4 +905,4 @@ while True:
         elif lang == 'eng':
             errors.eng.idk()
         
-        sys.exit()
+        # sys.exit()
