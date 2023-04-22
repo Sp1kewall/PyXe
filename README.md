@@ -1,10 +1,10 @@
-1.8
+1.9
 
 
 
-_____________________________________
-ENG
-_____________________________________
+__________________________________________________________________________
+                                  ENG                                    |
+__________________________________________________________________________
 
 Space Terminal
 Just my terminal
@@ -15,22 +15,25 @@ To get a list of all commands, write the command HELP or help
 
 Innovations:
 
-1. Now the UPT command works as expected!
-   However, I want to warn you that when you enter the command, Space Terminal will automatically close and REINSTALL
-    
-2. Both English and Russian languages are now in one file! You no longer need to search for the desired single language file.
-   Now it has become easier for you and me.
-   I have done a lot of work to get a good and convenient result for you, the user.
+1. Added the ability to process more than 2 arguments, in connection with which I added a command with such functionality.
+
+2. "CP" command. This command copies a file or its contents to a folder or file of your choice. It is this command that takes more than 2 arguments
+
+3. "WGET" command. This command downloads a file from the specified link.
+
+4. History of commands. Now Space Terminal writes each command entered into a separate "history" file.
+
+5. Minor upgrades for UNIX platforms
 
 
 ===============================
-Version as of 01/04/2023 - 1.8
+Version as of 22/04/2023 - 1.9
 
 
 
-_____________________________________
-RUS
-_____________________________________
+__________________________________________________________________________
+                                  RUS                                    |
+__________________________________________________________________________
 
 Space Terminal
 Просто мой терминал
@@ -41,12 +44,15 @@ Space Terminal
 
 Нововведения:
 
-1.  Теперь команда UPT работает как положенно!
-    Однако я хочу вас предупредить, что при введении команды, Space Terminal автоматически закроется и проведёт ПЕРЕУСТАНОВКУ
-    
-2. И Английский, и Руский языки теперь в одном файле! Вам больше не нужно искать нужный файл с одним языком.
-   Теперь-то стало легче и вам и мне.
-   Я проделал большую работу чтобы получить хороший и удобный для тебя, пользователя, результат.
+1. Добавлена возможность обрабатывать более 2 аргументов, в связи с чем я добавил команду с таким функционалом.
+
+2. Команда "CP". Эта команда копирует файл или его содержимое в нужную вам папку или файл. Именно эта команда принимает более 2 аргументов
+
+3. Команда "WGET". Эта команда скачивает по указанной ссылке файл.
+
+4. История команд. Теперь Space Terminal записывает каждую введённую команду в отдельный файл "history".
+
+5. Небольшие модернизации для UNIX платформ
 
 ===============================
-Версия на 01/04/2023 - 1.8
+Версия на 22/04/2023 - 1.9
