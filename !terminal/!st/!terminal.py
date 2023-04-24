@@ -35,9 +35,11 @@ while True:
             cdir = cdir0.read()
 
         try:
+            
             lang0 = open('!settings/lang.txt', 'r')
             lang = lang0.read()
         except:
+            
             if name == 'nt':
                 os.startfile('!mklang.py')
                 sys.exit()
@@ -338,7 +340,11 @@ while True:
                         print("Я не нашёл элементов " + user0[1] + " или " + user0[2])
                     except IndexError:
                         print("Недостаточно аргументов!")
-
+                    except PermissionError:
+                        try:
+                            shutil.copytree(user0[1], user0[2])
+                        except:
+                            print("Я не могу переместить этот объект")
 
 
                 elif lex == 'wget' or lex == 'WGET':
@@ -681,6 +687,11 @@ while True:
                         print("I can't found " + user0[1] + " or " + user0[2])
                     except IndexError:
                         print("Not enough arguments!")
+                    except PermissionError:
+                        try:
+                            shutil.copytree(user0[1], user0[2])
+                        except:
+                            print("I cannot move this object")
 
                 elif lex == 'wget' or lex == 'WGET':
                     print("Trying to download a file...\n")
@@ -711,7 +722,7 @@ while True:
                         try:
                             runfile(user)
                         except:
-                            errors.eng.idk()
+                            messagebox.showerror('Error', 'An unknown error has occurred :/')
         
             while True:
                 user = input(cursor)
