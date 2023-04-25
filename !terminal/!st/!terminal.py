@@ -13,17 +13,38 @@ while True:
             if name == 'nt': c = 'cls'
             os.system(c)
         clear()
-        import lib_platform
-        import requests
-        from colorama import init, Fore
-        from colorama import Back
-        from pyqadmin import admin 
-        from colorama import Style
-        from pathlib import Path
-        import zipfile
-        import shutil
+
+
+
 
         os.chdir('..')
+        try:
+            lang0 = open('!settings/lang.txt', 'r')
+            lang = lang0.read()
+        except:
+            while True:
+                if os.path.isfile('!settings/lang.txt'):
+                    break
+                else:
+                    clear()
+                    lang_ask = input("""
+                Choose your language:
+                Выберите свой язык:
+
+                \t 1.Русский (Russian)
+                \t 2.English (Английский)
+                $:""")
+                    lang01 = open('!settings/lang.txt', 'w')
+                    if lang_ask == '1':
+                        lang01.write('rus')
+                    elif lang_ask == '2':
+                        lang01.write('eng')
+                    else:
+                        pass
+                    lang01.close()
+                    lang01 = open('!settings/lang.txt', 'r')
+                    lang = lang01.read()
+
         if os.path.isfile("!settings/cdir.txt"):
                 cdir0 = open("!settings/cdir.txt", "r")
                 cdir = cdir0.read()
@@ -34,17 +55,16 @@ while True:
             cdir0 = open("!settings/cdir.txt", "r")
             cdir = cdir0.read()
 
-        try:
-            
-            lang0 = open('!settings/lang.txt', 'r')
-            lang = lang0.read()
-        except:
-            
-            if name == 'nt':
-                os.startfile('!mklang.py')
-                sys.exit()
-            else:
-                input("You need to run the !mklang.py file at " + cdir + "\nВам нужно запустить файл !mklang.py в папке " + cdir)
+
+        import lib_platform
+        import requests
+        from colorama import init, Fore
+        from colorama import Back
+        from pyqadmin import admin 
+        from colorama import Style
+        from pathlib import Path
+        import zipfile
+        import shutil
 
         if lang == 'rus': #Тут русский | Russian here
 
@@ -261,9 +281,9 @@ while True:
 
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
+                            user0 = user.split(' ')
                             if arg[0] == '!':
                                 print("Я не могу удалить эту директорию, она защищена!")
-                            
                             else:
                                 shutil.rmtree(arg)
                         except FileNotFoundError:
