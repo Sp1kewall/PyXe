@@ -1,0 +1,5 @@
+lib_platform
+requests
+colorama
+pathlib
+pyqadmin
