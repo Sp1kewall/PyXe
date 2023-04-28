@@ -504,6 +504,11 @@ while True:
         
             os.system("title Space Terminal")
 
+            def hstry():
+                with open(cdir + '/history', 'a') as hst:
+                    hst.writelines('\n' + user)
+                hst.close()
+
 
             init(autoreset=True)
             if name == 'mac':
@@ -514,14 +519,14 @@ while True:
                 cursor = (Fore.LIGHTGREEN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTRED_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + ' =' + Fore.WHITE + '>>')
 
 
-            if os.path.isfile("settings/cdir.txt"):
-                    cdir0 = open("settings/cdir.txt", "r")
+            if os.path.isfile("!settings/cdir.txt"):
+                    cdir0 = open("!settings/cdir.txt", "r")
                     cdir = cdir0.read()
             else:
-                lol = open("settings/cdir.txt", 'w')
+                lol = open("!settings/cdir.txt", 'w')
                 lol.writelines(os.getcwd())
                 lol.close()
-                cdir0 = open("settings/cdir.txt", "r")
+                cdir0 = open("!settings/cdir.txt", "r")
                 cdir = cdir0.read()
 
             os.chdir(lib_platform.path_userhome)
@@ -962,5 +967,5 @@ while True:
             messagebox.showerror('Ошибка', 'Произошла неизвестная ошибка :/')
         elif lang == 'eng':
             messagebox.showerror('Error', 'An unknown error has occurred :/')
-        
-        # sys.exit()
+      
+        sys.exit()
