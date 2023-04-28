@@ -770,15 +770,7 @@ while True:
                         print("Установка модулей...")
                         if name == 'nt':
                             clear()
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  Все модули установлены!\n")
                         elif name == 'posix':
@@ -788,27 +780,13 @@ while True:
                                 os.system("sudo apt install python3-pip")
                             else:
                                 pass
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            clear()
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  Все модули установлены!\n")
                         elif name == 'mac':
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip3 install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip3 install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            clear()
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  Все модули установлены!\n")
 
@@ -817,15 +795,7 @@ while True:
                         print("Installing modules...")
                         if name == 'nt':
                             clear()
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  All modules installed!\n")
                         elif name == 'posix':
@@ -835,27 +805,12 @@ while True:
                                 os.system("sudo apt install python3-pip")
                             else:
                                 pass
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  All modules installed!\n")
                         elif name == 'mac':
-                            print("\n\n[ lib_platform ]\n\n")
-                            os.system("pip3 install lib_platform")
-                            print("\n\n[ pyqadmin ]\n\n")
-                            os.system("pip3 install pyqadmin")
-                            print("\n\n[ colorama ]\n\n")
-                            os.system("pip install colorama")
-                            print("\n\nRequests\n\n")
-                            os.system("pip install requests")
-
+                            clear()
+                            os.system("pip install -r requirements.txt")
                             clear()
                             input("[  OK  ]  All modules installed!\n")
 
@@ -870,7 +825,6 @@ while True:
                         if name == 'nt':
                             clear()
                             os.system("pip install -r requirements.txt")
-
                             clear()
                             input("[  OK  ]  Все модули установлены!\n")
                         elif name == 'posix':
