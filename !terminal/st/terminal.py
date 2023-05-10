@@ -19,11 +19,11 @@ while True:
 
         os.chdir('..')
         try:
-            lang0 = open('!settings/lang.txt', 'r')
+            lang0 = open('settings/lang.txt', 'r')
             lang = lang0.read()
         except:
             while True:
-                if os.path.isfile('!settings/lang.txt'):
+                if os.path.isfile('settings/lang.txt'):
                     break
                 else:
                     clear()
@@ -34,7 +34,7 @@ while True:
                 \t 1.Русский (Russian)
                 \t 2.English (Английский)
                 $:""")
-                    lang01 = open('!settings/lang.txt', 'w')
+                    lang01 = open('settings/lang.txt', 'w')
                     if lang_ask == '1':
                         lang01.write('rus')
                     elif lang_ask == '2':
@@ -42,17 +42,17 @@ while True:
                     else:
                         pass
                     lang01.close()
-                    lang01 = open('!settings/lang.txt', 'r')
+                    lang01 = open('settings/lang.txt', 'r')
                     lang = lang01.read()
 
-        if os.path.isfile("!settings/cdir.txt"):
-                cdir0 = open("!settings/cdir.txt", "r")
+        if os.path.isfile("settings/cdir.txt"):
+                cdir0 = open("settings/cdir.txt", "r")
                 cdir = cdir0.read()
         else:
-            lol = open("!settings/cdir.txt", 'w')
+            lol = open("settings/cdir.txt", 'w')
             lol.writelines(os.getcwd())
             lol.close()
-            cdir0 = open("!settings/cdir.txt", "r")
+            cdir0 = open("settings/cdir.txt", "r")
             cdir = cdir0.read()
 
 
@@ -246,14 +246,8 @@ while True:
                         rez = sorted(os.listdir("."))
                         for n, item in enumerate(rez):
                             if os.path.isdir(item):
-                                if item[0] == '!':
-                                    print(Back.RED + item)
-                                else:
                                     print(Back.GREEN + item)
                             elif os.path.isfile(item):
-                                if item[0] == '!':
-                                    print(Fore.LIGHTRED_EX + item)
-                                else:
                                     print(item)
                     except PermissionError:
                         print('Мне отказано в доступе')
@@ -281,10 +275,6 @@ while True:
 
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
-                            user0 = user.split(' ')
-                            if arg[0] == '!':
-                                print("Я не могу удалить эту директорию, она защищена!")
-                            else:
                                 shutil.rmtree(arg)
                         except FileNotFoundError:
                             print("Директория " + arg + " не найдена")
@@ -309,9 +299,6 @@ while True:
                     pass
                 elif lex == 'rm' or lex == 'RM':
                         try:
-                            if arg[0] == '!':
-                                print("Я не могу удалить этот файл, он защищён!")
-                            else:
                                 os.remove(arg)
                         except FileNotFoundError:
                             print("Файл " + arg + " не найден")
@@ -641,10 +628,6 @@ while True:
                         print("Directory cannot be named " + arg)
                 elif lex == 'rmctl' or lex == 'RMCTL':
                         try:
-                            if arg[0] == '!':
-                                print("I can't delete this directory, it's protected!")
-                            
-                            else:
                                 shutil.rmtree(arg)
                         except FileNotFoundError:
                             print("Directory " + arg + " not found")
@@ -666,9 +649,6 @@ while True:
                     pass
                 elif lex == 'rm' or lex == 'RM':
                         try:
-                            if arg[0] == '!':
-                                print("I can't delete this file, it's protected!")
-                            else:
                                 os.remove(arg)
                         except FileNotFoundError:
                             print("File " + arg + " not found")
