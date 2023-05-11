@@ -2,7 +2,7 @@ ver = "2.0"
 
 while True:
     try:
-        import os, sys, time
+        import os, sys
         from os import name
         from os import path
         from tkinter import messagebox
@@ -11,6 +11,7 @@ while True:
             if name == 'nt': c = 'cls'
             os.system(c)
         clear()
+
 
 
         try:
@@ -73,25 +74,13 @@ while True:
 
 
             def runfile(x):
-                if name == 'nt':
                     try:
-                        os.startfile(x + '.bat')
+                        if name == 'nt':
+                            os.system(x)
+                        else:
+                            os.startfile(x)
                     except:
-                        try:
-                            os.startfile(x + '.exe')
-                        except:
                             print(x + " не команда и не исполняемый файл")
-                elif name == 'posix':
-                    try:
-                        os.startfile(x)
-                    except:
-                        print(x + " не команда и не исполняемый файл")
-
-                elif name == 'mac':
-                    try:
-                        os.startfile(x)
-                    except:
-                        print(x + " не команда и не исполняемый файл")
 
             def file(arg):
                 if name == 'nt':
@@ -136,7 +125,7 @@ while True:
                 elif name == 'posix' or name == 'mac':
                     os.system("nano " + arg)
         
-            os.system("title Space Terminal")
+
 
             def hstry():
                 with open(cdir + '/history', 'a') as hst:
@@ -144,7 +133,7 @@ while True:
                 hst.close()
 
 
-            cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
+            cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + Fore.RESET + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
 
 
             init(autoreset=True)
@@ -251,6 +240,8 @@ while True:
                         except FileNotFoundError:
                             print("Директория " + arg + " не найдена")
 
+                        except OSError:
+                            print("Недостаточно аргументов")
                         except:
                             print("Произошла непредвиденная ошибка :/")
 
@@ -403,24 +394,11 @@ while True:
 
 
             def runfile(x):
-                if name == 'nt':
                     try:
-                        os.startfile(x + '.bat')
-                    except:
-                        try:
-                            os.startfile(x + '.exe')
-                        except:
-                            print(x + " is not a command or an executable")
-
-                elif name == 'posix':
-                    try:
-                        os.startfile(x)
-                    except:
-                        print(x + " is not a command or an executable")
-
-                elif name == 'mac':
-                    try:
-                        os.startfile(x)
+                        if name == 'nt':
+                            os.system(x)
+                        else:
+                            os.startfile(x)
                     except:
                         print(x + " is not a command or an executable")
 
@@ -466,7 +444,7 @@ while True:
                 elif name == 'posix' or name == 'mac':
                     os.system("nano " + arg)
         
-            os.system("title Space Terminal")
+
 
             def hstry():
                 with open(cdir + '/history', 'a') as hst:
@@ -475,7 +453,7 @@ while True:
 
 
             init(autoreset=True)
-            cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
+            cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + Fore.RESET + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
 
 
             if os.path.isfile("!settings/cdir.txt"):
@@ -634,14 +612,6 @@ while True:
                     except FileNotFoundError:
                         print("File " + arg + " not found")
 
-                elif lex == 'cname' or lex == 'CNAME':
-                    if name == 'nt':
-                        print("Windows")
-                    elif lex == 'posix':
-                        print("UNIX Linux")
-                    elif lex == 'mac':
-                        print("UNIX OS X")
-
                     
 
                 elif lex == 'cp':
@@ -712,7 +682,7 @@ while True:
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули обновлены! Нажмите ENTER чтобы перезапустить оболочку\n")
                         elif name == 'posix':
                             clear()
                             var1 = input("Установить pip?\n(y/n)$:")
@@ -723,12 +693,12 @@ while True:
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули обновлены! Нажмите ENTER чтобы перезапустить оболочку\n")
                         elif name == 'mac':
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули обновлены! Нажмите ENTER чтобы перезапустить оболочку\n")
 
                     elif lang == 'eng':
 
@@ -737,7 +707,8 @@ while True:
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules have been updated! Press ENTER to restart the shell\n")
+                            sys.exit()
                         elif name == 'posix':
                             clear()
                             var1 = input("Install pip?\n(y/n)$:")
@@ -747,12 +718,14 @@ while True:
                                 pass
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules have been updated! Press ENTER to restart the shell\n")
+                            sys.exit()
                         elif name == 'mac':
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules have been updated! Press ENTER to restart the shell\n")
+                            sys.exit()
 
     except ModuleNotFoundError:
             while True:
@@ -766,7 +739,8 @@ while True:
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули установлены! Нажмите ENTER чтобы перезапустить оболочку\n")
+                            sys.exit()
                         elif name == 'posix':
                             clear()
                             var1 = input("Установить pip?\n(y/n)$:")
@@ -776,15 +750,17 @@ while True:
                                 pass
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули установлены! Нажмите ENTER чтобы перезапустить оболочку\n")
+                            sys.exit()
                         elif name == 'mac':
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  Все модули установлены!\n")
+                            input("[  OK  ]  Все модули установлены! Нажмите ENTER чтобы перезапустить оболочку\n")
+                            sys.exit()
                     elif ask == 'n' or ask == 'N':
                         sys.exit()
                     else:
-                        pass
+                        print("Ты серьёзно?")
 
                 elif lang == 'eng':
                     ask = input("Modules are not installed or are not working correctly. Press Ctrl + C at startup to install all modules\nOr install them now\nInstall? [y/n] $:")
@@ -794,7 +770,7 @@ while True:
                             clear()
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules are installed! Press ENTER to restart the shell\n")
                         elif name == 'posix':
                             clear()
                             var1 = input("Install pip?\n(y/n)$:")
@@ -804,11 +780,18 @@ while True:
                                 pass
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules are installed! Press ENTER to restart the shell\n")
                         elif name == 'mac':
                             os.system("pip install -r requirements.txt")
                             clear()
-                            input("[  OK  ]  All modules installed!\n")
+                            input("[  OK  ]  All modules are installed! Press ENTER to restart the shell\n")
+
+                    elif ask == 'n' or ask == 'N':
+                        sys.exit()
+
+
+                    else:
+                        print("Are you serious?")
 
     except NameError:
         if lang == 'rus':
