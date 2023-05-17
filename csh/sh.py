@@ -63,14 +63,6 @@ while True:
 
         if lang == 'rus': #Тут русский | Russian here
 
-            def download_file(url):
-                local_filename = url.split('/')[-1]
-                with requests.get(url, stream=True, allow_redirects=True) as r:
-                    r.raise_for_status()
-                    with open(local_filename, 'wb') as f:
-                        for chunk in r.iter_content(chunk_size=8192): 
-                            f.write(chunk)
-                return local_filename
 
 
             def runfile(x):
@@ -383,14 +375,7 @@ while True:
 
 
 
-            def download_file(url):
-                local_filename = url.split('/')[-1]
-                with requests.get(url, stream=True, allow_redirects=True) as r:
-                    r.raise_for_status()
-                    with open(local_filename, 'wb') as f:
-                        for chunk in r.iter_content(chunk_size=8192): 
-                            f.write(chunk)
-                return local_filename
+
 
 
             def runfile(x):
@@ -456,15 +441,6 @@ while True:
             cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + Fore.RESET + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
 
 
-            if os.path.isfile("!settings/cdir.txt"):
-                    cdir0 = open("!settings/cdir.txt", "r")
-                    cdir = cdir0.read()
-            else:
-                lol = open("!settings/cdir.txt", 'w')
-                lol.writelines(os.getcwd())
-                lol.close()
-                cdir0 = open("!settings/cdir.txt", "r")
-                cdir = cdir0.read()
 
             os.chdir(lib_platform.path_userhome)
             clear()
