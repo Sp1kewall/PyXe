@@ -1,11 +1,10 @@
-ver = "2.0"
+ver = "2.1"
 
 while True:
     try:
         import os, sys
         from os import name
         from os import path
-        from tkinter import messagebox
         def clear():
             c = 'clear'
             if name == 'nt': c = 'cls'
@@ -59,6 +58,7 @@ while True:
         from pyqadmin import admin 
         from colorama import Style
         from pathlib import Path
+        import wget
         import shutil
 
         if lang == 'rus': #Тут русский | Russian here
@@ -275,11 +275,6 @@ while True:
                             print("Файл " + arg + " не найден")
 
 
-                elif lex == 'user' or lex == 'USER':
-                    print(Fore.GREEN + lib_platform.username)
-
-                elif lex == 'host' or lex == 'HOST':
-                    print(Fore.RED + lib_platform.hostname)
 
                 elif lex == 'touch' or lex == 'TOUCH':
                     try:
@@ -287,15 +282,6 @@ while True:
                             lol.close()
                     except FileNotFoundError:
                         print("Файл " + arg + " не найден")
-
-
-                elif lex == 'cname' or lex == 'CNAME':
-                    if name == 'nt':
-                        print("Windows")
-                    elif lex == 'posix':
-                        print("UNIX Linux")
-                    elif lex == 'mac':
-                        print("UNIX OS X")
 
 
 
@@ -317,10 +303,10 @@ while True:
                 elif lex == 'wget' or lex == 'WGET':
                     print("Пытаюсь скачать файл...\n")
                     try:
-                        download_file(arg)
-                        print("Файл скачан!\n")
+                        wget.download(arg)
+                        print("\nФайл скачен!\n")
                     except:
-                        print("Не удалось скачать файл. Возможно он повреждён или у вас нет подключение к интернету\n")
+                        print("\nНе удалось скачать файл. Возможно он повреждён или у вас нет подключения к интернету\n")
                     
 
                 elif lex == 'ver' or lex == 'VER':
@@ -575,11 +561,7 @@ while True:
                         except FileNotFoundError:
                             print("File " + arg + " not found")
 
-                elif lex == 'user' or lex == 'USER':
-                    print(Fore.GREEN + lib_platform.username)
 
-                elif lex == 'host' or lex == 'HOST':
-                    print(Fore.RED + lib_platform.hostname)
 
                 elif lex == 'touch' or lex == 'TOUCH':
                     try:
@@ -607,10 +589,10 @@ while True:
                 elif lex == 'wget' or lex == 'WGET':
                     print("Trying to download a file...\n")
                     try:
-                        download_file(arg)
-                        print("File downloaded!\n")
+                        wget.download(arg)
+                        print("\nFile downloaded!\n")
                     except:
-                        print("Failed to download file. Maybe it's damaged or you don't have an internet connection\n")
+                        print("\nFailed to download file. Maybe it's damaged or you don't have an internet connection\n")
                     
 
                 elif lex == 'ver' or lex == 'VER':
@@ -633,7 +615,7 @@ while True:
                         try:
                             runfile(user)
                         except:
-                            messagebox.showerror('Error', 'An unknown error has occurred :/')
+                            print('An unknown error has occurred :/')
         
             while True:
                 user = input(cursor)
@@ -771,9 +753,9 @@ while True:
 
     except NameError:
         if lang == 'rus':
-            messagebox.showerror('Ошибка', 'Произошла неизвестная ошибка :/')
+            print('Произошла неизвестная ошибка :/')
         elif lang == 'eng':
-            messagebox.showerror('Error', 'An unknown error has occurred :/')
+            print('An unknown error has occurred :/')
       
         sys.exit()
         
