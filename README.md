@@ -1,4 +1,4 @@
-2.0
+2.1
 
 
 
@@ -14,11 +14,11 @@ To update modules, press Ctrl+ C
 To get a list of all commands, write the command HELP or help
 
 Innovations:
-1. Now Space Terminal has been renamed and is called CoolShell. Nothing has changed at work.
-
+1. Changing the WGET command
+2. Fixed some bugs
 
 ===============================
-Version as of 10/05/2023 - 2.0
+Version as of 22/05/23 - 2.1
 
 
 
@@ -34,7 +34,8 @@ CoolShell (Space Terminal)
 Чтобы получить список всех команд напишите команду HELP или help
 
 Нововведения:
-1. Теперь Space Terminal переименован и несёт название CoolShell. В работе ничего не поменялось
+1. Изменение команды WGET
+2. Исправлены некоторые баги
 
 ===============================
-Версия на 10/05/2023 - 2.0
+Версия на 22/05/2023 - 2.1
