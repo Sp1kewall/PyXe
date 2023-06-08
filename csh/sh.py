@@ -40,15 +40,6 @@ while True:
                     lang01 = open('lang.txt', 'r')
                     lang = lang01.read()
 
-        if os.path.isfile("cdir.txt"):
-                cdir0 = open("cdir.txt", "r")
-                cdir = cdir0.read()
-        else:
-            lol = open("cdir.txt", 'w')
-            lol.writelines(os.getcwd())
-            lol.close()
-            cdir0 = open("cdir.txt", "r")
-            cdir = cdir0.read()
 
 
         import lib_platform
@@ -119,10 +110,7 @@ while True:
         
 
 
-            def hstry():
-                with open(cdir + '/history', 'a') as hst:
-                    hst.writelines('\n' + user)
-                hst.close()
+
 
 
             cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + Fore.RESET + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
@@ -278,8 +266,8 @@ while True:
 
                 elif lex == 'touch' or lex == 'TOUCH':
                     try:
-                        with open(arg, 'w') as lol:
-                            lol.close()
+                        with open(arg, 'w') as lol1:
+                            lol1.close()
                     except FileNotFoundError:
                         print("Файл " + arg + " не найден")
 
@@ -335,16 +323,7 @@ while True:
                 user = input(cursor)
                 if lexer(user): break
 
-                elif os.path.isfile(cdir + '/history'):
-                    hstry()
-                else:
-                    hh = open(cdir + '/history', 'w')
 
-                    hh.close()
-                    hstry()
-
-
-        
         elif lang == 'eng': #English here | Тут английский
 
 
@@ -417,10 +396,6 @@ while True:
         
 
 
-            def hstry():
-                with open(cdir + '/history', 'a') as hst:
-                    hst.writelines('\n' + user)
-                hst.close()
 
 
             init(autoreset=True)
@@ -565,8 +540,8 @@ while True:
 
                 elif lex == 'touch' or lex == 'TOUCH':
                     try:
-                        with open(arg, 'w') as lol:
-                            lol.close()
+                        with open(arg, 'w') as lol1:
+                            lol1.close()
                     except FileNotFoundError:
                         print("File " + arg + " not found")
 
@@ -621,14 +596,6 @@ while True:
                 user = input(cursor)
                 if lexer(user): break
 
-                elif os.path.isfile(cdir + '/history'):
-                    hstry()
-                else:
-                    hh = open(cdir + '/history', 'w')
-
-                    hh.close()
-                    hstry()
-
 
 
     except KeyboardInterrupt:
@@ -649,12 +616,7 @@ while True:
                             else:
                                 pass
                             clear()
-                            os.system("pip install -r requirements.txt")
-                            clear()
-                            input("[  OK  ]  Все модули обновлены! Нажмите ENTER чтобы перезапустить оболочку\n")
-                        elif name == 'mac':
-                            clear()
-                            os.system("pip install -r requirements.txt")
+                            os.system("pip3 install -r requirements.txt")
                             clear()
                             input("[  OK  ]  Все модули обновлены! Нажмите ENTER чтобы перезапустить оболочку\n")
 
@@ -674,13 +636,7 @@ while True:
                                 os.system("sudo apt install python3-pip")
                             else:
                                 pass
-                            os.system("pip install -r requirements.txt")
-                            clear()
-                            input("[  OK  ]  All modules have been updated! Press ENTER to restart the shell\n")
-                            sys.exit()
-                        elif name == 'mac':
-                            clear()
-                            os.system("pip install -r requirements.txt")
+                            os.system("pip3 install -r requirements.txt")
                             clear()
                             input("[  OK  ]  All modules have been updated! Press ENTER to restart the shell\n")
                             sys.exit()
@@ -706,12 +662,7 @@ while True:
                                 os.system("sudo apt install python3-pip")
                             else:
                                 pass
-                            os.system("pip install -r requirements.txt")
-                            clear()
-                            input("[  OK  ]  Все модули установлены! Нажмите ENTER чтобы перезапустить оболочку\n")
-                            sys.exit()
-                        elif name == 'mac':
-                            os.system("pip install -r requirements.txt")
+                            os.system("pip3 install -r requirements.txt")
                             clear()
                             input("[  OK  ]  Все модули установлены! Нажмите ENTER чтобы перезапустить оболочку\n")
                             sys.exit()
@@ -736,11 +687,7 @@ while True:
                                 os.system("sudo apt install python3-pip")
                             else:
                                 pass
-                            os.system("pip install -r requirements.txt")
-                            clear()
-                            input("[  OK  ]  All modules are installed! Press ENTER to restart the shell\n")
-                        elif name == 'mac':
-                            os.system("pip install -r requirements.txt")
+                            os.system("pip3 install -r requirements.txt")
                             clear()
                             input("[  OK  ]  All modules are installed! Press ENTER to restart the shell\n")
 
