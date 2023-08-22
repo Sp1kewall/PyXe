@@ -2,10 +2,7 @@ ver = "2.3"
 
 req = ("""
 lib_platform
-requests
 colorama
-pathlib
-pyqadmin
 wget
 """)
 
@@ -14,7 +11,6 @@ while True:
         import os, sys
         from os import name
         from os import path
-        from lib.spix.spix import *
         from lib.AutoRequirements.autorequirements import *
         def clear():
             c = 'clear'
@@ -31,7 +27,6 @@ while True:
                 if os.path.isfile('lang.txt'):
                     break
                 else:
-
                     lang_ask = input("""
                 Choose your language:
                 Выберите свой язык:
@@ -53,12 +48,8 @@ while True:
 
 
         import lib_platform
-        import requests
         from colorama import init, Fore
         from colorama import Back
-        from pyqadmin import admin 
-        from colorama import Style
-        from pathlib import Path
         import wget
         import shutil
 
@@ -186,7 +177,7 @@ while True:
                         print("<CP       > скопировать файл в какое-то место или файл")
                         print('<WGET     > скачать файл из интернета')
                         print("<VER      > просмотреть версию терминала")
-                elif lex == 'say' or lex == 'SAY':
+                elif lex.lower() == 'say':
                     try:
                         print(eval(arg))
                     except SyntaxError:
@@ -197,7 +188,7 @@ while True:
                     except NameError:
                         print(arg)
 
-                elif lex == 'ls' or lex == 'LS':
+                elif lex.lower() == 'ls':
                     try:
                         rez = sorted(os.listdir("."))
                         for n, item in enumerate(rez):
@@ -208,12 +199,12 @@ while True:
                     except PermissionError:
                         print('Мне отказано в доступе')
 
-                elif lex == 'wia' or lex == 'WIA':
+                elif lex.lower() == 'wia':
                     print(os.getcwd())
-                elif lex == 'clear' or lex == 'CLEAR':
+                elif lex.lower() == 'clear':
                     clear()
 
-                elif lex == 'cd' or lex == 'CD':
+                elif lex.lower() == 'cd':
                         try:
                             os.chdir(arg)
                         except FileNotFoundError:
@@ -225,13 +216,13 @@ while True:
                             print("Произошла непредвиденная ошибка :/")
 
 
-                elif lex == 'mkdir' or lex == 'MKDIR':
+                elif lex.lower() == 'mkdir':
                     try:
                         os.mkdir(arg)
                     except OSError:
                         print("Директория не может быть названа " + arg)
 
-                elif lex == 'rmdir' or lex == 'RMDIR':
+                elif lex.lower() == 'rmdir':
                         try:
                                 shutil.rmtree(arg)
                         except FileNotFoundError:
@@ -240,9 +231,9 @@ while True:
                         except OSError:
                                 print("Директория не может быть названа " + arg)
 
-                elif lex == 'file' or lex == 'FILE':
+                elif lex.lower() == 'file':
                     file(arg)
-                elif lex == 'cat' or lex == 'CAT':
+                elif lex.lower() == 'cat':
                     try:
                         f = open(arg, 'r')
                         print(f.read())
@@ -255,7 +246,7 @@ while True:
 
                 elif lex == '':
                     pass
-                elif lex == 'rm' or lex == 'RM':
+                elif lex.lower() == 'rm':
                         try:
                                 os.remove(arg)
                         except FileNotFoundError:
@@ -263,7 +254,7 @@ while True:
 
 
 
-                elif lex == 'touch' or lex == 'TOUCH':
+                elif lex.lower() == 'touch':
                     try:
                         with open(arg, 'w') as lol1:
                             lol1.close()
@@ -272,7 +263,7 @@ while True:
 
 
 
-                elif lex == 'cp':
+                elif lex.lower() == 'cp':
                     try:
                         user0 = user.split(' ')
                         shutil.copy2(user0[1], user0[2])
@@ -287,7 +278,7 @@ while True:
                             print("Я не могу переместить этот объект")
 
 
-                elif lex == 'wget' or lex == 'WGET':
+                elif lex.lower() == 'wget':
                     print("Пытаюсь скачать файл...\n")
                     try:
                         wget.download(arg)
@@ -296,18 +287,12 @@ while True:
                         print("\nНе удалось скачать файл. Возможно он повреждён или у вас нет подключения к интернету\n")
 
 
-                elif lex == 'show' or lex == 'SHOW':
-                    try:
-                        present(arg)
-                    except FileNotFoundError:
-                        print("Файл " + arg + " не найден")
-                    except PermissionError:
-                        print("Для работы команды нужн оуказывать файл, а не директорию")
+
 
 
                     
 
-                elif lex == 'ver' or lex == 'VER':
+                elif lex.lower() == 'ver':
                     print("""
                 |OpenSource                         |
                 |PyXe (Python eXecution environment)|
@@ -317,7 +302,7 @@ while True:
                          Версия """ + ver + "\n\n")
 
 
-                elif lex == 'exit' or lex == 'EXIT':
+                elif lex.lower() == 'exit':
                     print("Выход...\nПока! Хорошего дня! :)\n\n")
                     sys.exit()
 
@@ -338,23 +323,6 @@ while True:
 
 
         elif lang == 'eng': #English here | Тут английский
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             def runfile(x):
                     try:
@@ -478,7 +446,7 @@ while True:
                         print("<CP       > copy the file to some location or file")
                         print('<WGET     > download file from internet')
                         print("<VER      > view terminal version")
-                elif lex == 'say' or lex == 'SAY':
+                elif lex.lower() == 'say':
                     try:
                         print(eval(arg))
                     except SyntaxError:
@@ -488,7 +456,7 @@ while True:
                     except NameError:
                         print(arg)
 
-                elif lex == 'ls' or lex == 'LS':
+                elif lex.lower() == 'ls':
                     try:
                         rez = sorted(os.listdir("."))
                         for n, item in enumerate(rez):
@@ -499,12 +467,12 @@ while True:
                     except PermissionError:
                         print('I was denied access')
 
-                elif lex == 'wia' or lex == 'WIA':
+                elif lex.lower() == 'wia':
                     print(os.getcwd())
-                elif lex == 'clear' or lex == 'CLEAR':
+                elif lex.lower() == 'clear':
                     clear()
 
-                elif lex == 'cd' or lex == 'CD':
+                elif lex.lower() == 'cd':
                         try:
                             os.chdir(arg)
                         except FileNotFoundError:
@@ -512,7 +480,7 @@ while True:
                         except:
                             print("An unexpected error has occurred :/")
 
-                elif lex == 'mkdir' or lex == 'MKDIR':
+                elif lex.lower() == 'mkdir':
                     try:
                         os.mkdir(arg)
                     except OSError:
@@ -525,9 +493,9 @@ while True:
 
                         except OSError:
                                 print("Directory cannot be named " + arg)
-                elif lex == 'file' or lex == 'FILE':
+                elif lex.lower() == 'file':
                     file(arg)
-                elif lex == 'cat' or lex == 'CAT':
+                elif lex.lower() == 'cat':
                     try:
                         f = open(arg, 'r')
                         print(f.read())
@@ -538,7 +506,7 @@ while True:
                         print("File " + arg + " not found")
                 elif lex == '':
                     pass
-                elif lex == 'rm' or lex == 'RM':
+                elif lex.lower() == 'rm':
                         try:
                                 os.remove(arg)
                         except FileNotFoundError:
@@ -546,7 +514,7 @@ while True:
 
 
 
-                elif lex == 'touch' or lex == 'TOUCH':
+                elif lex.lower() == 'touch':
                     try:
                         with open(arg, 'w') as lol1:
                             lol1.close()
@@ -555,7 +523,7 @@ while True:
 
                     
 
-                elif lex == 'cp':
+                elif lex.lower() == 'cp':
                     try:
                         user0 = user.split(' ')
                         shutil.copy2(user0[1], user0[2])
@@ -569,7 +537,7 @@ while True:
                         except:
                             print("I cannot move this object")
 
-                elif lex == 'wget' or lex == 'WGET':
+                elif lex.lower() == 'wget':
                     print("Trying to download a file...\n")
                     try:
                         wget.download(arg)
@@ -578,7 +546,7 @@ while True:
                         print("\nFailed to download file. Maybe it's damaged or you don't have an internet connection\n")
                     
 
-                elif lex == 'ver' or lex == 'VER':
+                elif lex.lower() == 'ver':
                     print("""
                 |OpenSource                         |
                 |PyXe (Python eXecution environment)|
@@ -587,7 +555,7 @@ while True:
                 __________________________
                      Version """ + ver + "\n")
 
-                elif lex == 'exit' or lex == 'EXIT':
+                elif lex.lower() == 'exit':
                     print("Exit...\nBye! Have a good day! :)\n\n")
                     sys.exit()
 
@@ -609,9 +577,10 @@ while True:
 
 
     except KeyboardInterrupt:
-                    os.chdir(cdir)
+            while True:
                     clear()
                     update_req(lang, req)
+                    break
 
     except ModuleNotFoundError:
             while True:
