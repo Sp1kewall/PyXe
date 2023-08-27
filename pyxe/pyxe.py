@@ -17,14 +17,12 @@ while True:
             if name == 'nt': c = 'cls'
             os.system(c)
 
-
-
         try:
-            lang0 = open('lang.txt', 'r')
+            lang0 = open('lang.pie', 'r')
             lang = lang0.read()
         except:
             while True:
-                if os.path.isfile('lang.txt'):
+                if os.path.isfile('lang.pie'):
                     break
                 else:
                     lang_ask = input("""
@@ -34,7 +32,7 @@ while True:
                 \t 1.Русский (Russian)
                 \t 2.English (Английский)
                 $:""")
-                    lang01 = open('lang.txt', 'w')
+                    lang01 = open('lang.pie', 'w')
                     if lang_ask == '1':
                         lang01.write('rus')
                     elif lang_ask == '2':
@@ -42,7 +40,7 @@ while True:
                     else:
                         pass
                     lang01.close()
-                    lang01 = open('lang.txt', 'r')
+                    lang01 = open('lang.pie', 'r')
                     lang = lang01.read()
 
 
@@ -380,7 +378,7 @@ while True:
 
 
             init(autoreset=True)
-            cursor = (Fore.LIGHTCYAN_EX + lib_platform.username + Fore.LIGHTCYAN_EX + Fore.RESET + "ˆ" + Fore.LIGHTMAGENTA_EX + lib_platform.hostname + Fore.LIGHTBLUE_EX + " ~~ " + Fore.CYAN + '>_<  ' + Fore.RESET) 
+            cursor = (Fore.RED + lib_platform.username + "ˆ" + lib_platform.hostname + Fore.RESET + " ~#: ") 
 
 
 
