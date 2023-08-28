@@ -130,7 +130,7 @@ while True:
         
             def shell(lex,arg):
 
-                if lex == 'help' or lex == 'HELP':
+                if lex.lower() == 'help':
                     if arg == '--say':
                         print("SAY - Команда для вывода текста/математического действия на экран\nТекст или математическое действие указывать как аргумент\n\n")
                     elif arg == '--clear':
@@ -399,7 +399,7 @@ while True:
         
             def shell(lex,arg):
 
-                if lex == 'help' or lex == 'HELP':
+                if lex.lower() == 'help':
                     if arg == '--say':
                         print("SAY - Command for displaying text/math on the screen\nSpecify text or mathematical action as an argument\n\n")
                     elif arg == '--clear':
