@@ -136,7 +136,7 @@ while True:
                     elif arg == '--wia':
                         print("WIA - Команда для вывода текущего пути\n\n")
                     elif arg == '--':
-                        print(" - Команда для смены директории\nИмя директории указывать как аргумент\n\n")
+                        print("CD - Команда для смены директории\nИмя директории указывать как аргумент\n\n")
                     elif arg == '--crctl':
                         print("MKDIR - Команда для создания директории\nИмя директории указывать как аргумент\n\n")
                     elif arg == '--rmctl':
@@ -161,7 +161,7 @@ while True:
                         print("<CLEAR    > отчистить экран")
                         print("<LS       > просмотреть содержимое текущей директории")
                         print("<WIA      > просмотреть путь к текущей директории")
-                        print("<       > сменить директорию")
+                        print("<CD       > сменить директорию")
                         print("<CRCTL    > создать директорию")
                         print("<RMCTL    > удалить директорию")
                         print("<RM       > удалить выбранный файл")
@@ -414,7 +414,7 @@ while True:
                     elif arg == '--wia':
                         print("WIA - Command to display the current path\n\n")
                     elif arg == '--':
-                        print(" - Command to change directory\nDirectory name as an argument\n\n")
+                        print("CD - Command to change directory\nDirectory name as an argument\n\n")
                     elif arg == '--crctl':
                         print("MKDIR - Command to create a directory\nDirectory name as an argument\n\n")
                     elif arg == '--rmctl':
@@ -439,7 +439,7 @@ while True:
                         print("<CLEAR    > clear screen")
                         print("<LS       > view the contents of the current directory")
                         print("<WIA      > view the path to the current directory")
-                        print("<       > change directory")
+                        print("<CD       > change directory")
                         print("<CRCTL    > create a directory")
                         print("<RMCTL    > delete directory")
                         print("<RM       > delete selected file")
