@@ -1,30 +1,30 @@
-ver = "2.3"
-
-req = ("""
-lib_platform
-colorama
-wget
-""")
+ver = "2.4"
 
 while True:
     try:
         import os, sys
         from os import name
         from os import path
-        from lib.AutoRequirements.autorequirements import *
+        import lib_platform
+        from colorama import init, Fore
+        from colorama import Back
+        import wget
+        import shutil
+
         def clear():
             c = 'clear'
             if name == 'nt': c = 'cls'
             os.system(c)
 
         try:
-            lang0 = open('lang.pie', 'r')
+            lang0 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'r')
             lang = lang0.read()
         except:
             while True:
-                if os.path.isfile('lang.pie'):
+                if os.path.isfile(lib_platform.path_userhome + "/PyXes pies/lang.pie"):
                     break
                 else:
+                    lang_status = "1"
                     lang_ask = input("""
                 Choose your language:
                 Выберите свой язык:
@@ -32,7 +32,8 @@ while True:
                 \t 1.Русский (Russian)
                 \t 2.English (Английский)
                 $:""")
-                    lang01 = open('lang.pie', 'w')
+                    os.mkdir(lib_platform.path_userhome + "/PyXes pies")
+                    lang01 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'w')
                     if lang_ask == '1':
                         lang01.write('rus')
                     elif lang_ask == '2':
@@ -40,16 +41,11 @@ while True:
                     else:
                         pass
                     lang01.close()
-                    lang01 = open('lang.pie', 'r')
+                    lang01 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'r')
                     lang = lang01.read()
 
 
 
-        import lib_platform
-        from colorama import init, Fore
-        from colorama import Back
-        import wget
-        import shutil
 
         if lang == 'rus': #Тут русский | Russian here
 
@@ -108,12 +104,12 @@ while True:
                     os.system("nano " + arg)
 
 
-            cursor = (Fore.RED + lib_platform.username + "ˆ" + lib_platform.hostname + Fore.RESET + " ~#: ") 
+ 
 
 
             init(autoreset=True)
 
-            os.chdir(lib_platform.path_userhome)
+
         
             def lexer(c):
                 lex=''
@@ -130,7 +126,7 @@ while True:
         
             def shell(lex,arg):
 
-                if lex.lower() == 'help':
+                if lex == 'help' or lex == 'HELP':
                     if arg == '--say':
                         print("SAY - Команда для вывода текста/математического действия на экран\nТекст или математическое действие указывать как аргумент\n\n")
                     elif arg == '--clear':
@@ -139,8 +135,8 @@ while True:
                         print("LS - Команда для просмотра содержимого директории. Если объект выделен зеленым, значит это директория.n\n")
                     elif arg == '--wia':
                         print("WIA - Команда для вывода текущего пути\n\n")
-                    elif arg == '--cd':
-                        print("CD - Команда для смены директории\nИмя директории указывать как аргумент\n\n")
+                    elif arg == '--':
+                        print(" - Команда для смены директории\nИмя директории указывать как аргумент\n\n")
                     elif arg == '--crctl':
                         print("MKDIR - Команда для создания директории\nИмя директории указывать как аргумент\n\n")
                     elif arg == '--rmctl':
@@ -165,7 +161,7 @@ while True:
                         print("<CLEAR    > отчистить экран")
                         print("<LS       > просмотреть содержимое текущей директории")
                         print("<WIA      > просмотреть путь к текущей директории")
-                        print("<CD       > сменить директорию")
+                        print("<       > сменить директорию")
                         print("<CRCTL    > создать директорию")
                         print("<RMCTL    > удалить директорию")
                         print("<RM       > удалить выбранный файл")
@@ -203,15 +199,18 @@ while True:
                     clear()
 
                 elif lex.lower() == 'cd':
-                        try:
-                            os.chdir(arg)
-                        except FileNotFoundError:
-                            print("Директория " + arg + " не найдена")
+                        if arg == '~':
+                            os.chdir(lib_platform.path_userhome)
+                        else:
+                            try:
+                                os.chdir(arg)
+                            except FileNotFoundError:
+                                print("Директория " + arg + " не найдена")
 
-                        except OSError:
-                            print("Недостаточно аргументов")
-                        except:
-                            print("Произошла непредвиденная ошибка :/")
+                            except OSError:
+                                print("Недостаточно аргументов")
+                            except:
+                                print("Произошла непредвиденная ошибка :/")
 
 
                 elif lex.lower() == 'mkdir':
@@ -316,6 +315,12 @@ while True:
                             print("Произошла неизвестная ошибка :/")
             
             while True:
+
+                if os.getcwd() == lib_platform.path_userhome:
+                    cursor = (Fore.RED + lib_platform.username + "@" + lib_platform.hostname + Fore.RESET + " ~#: ")
+                else:
+                    cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + " #: ")
+
                 user = input(cursor)
                 if lexer(user): break
 
@@ -378,11 +383,11 @@ while True:
 
 
             init(autoreset=True)
-            cursor = (Fore.RED + lib_platform.username + "ˆ" + lib_platform.hostname + Fore.RESET + " ~#: ") 
 
 
 
-            os.chdir(lib_platform.path_userhome)
+
+
         
             def lexer(c):
                 lex=''
@@ -399,7 +404,7 @@ while True:
         
             def shell(lex,arg):
 
-                if lex.lower() == 'help':
+                if lex == 'help' or lex == 'HELP':
                     if arg == '--say':
                         print("SAY - Command for displaying text/math on the screen\nSpecify text or mathematical action as an argument\n\n")
                     elif arg == '--clear':
@@ -408,8 +413,8 @@ while True:
                         print("LS - Command to view the contents of a directory. If the object is highlighted in green, then this is a directory\n\n")
                     elif arg == '--wia':
                         print("WIA - Command to display the current path\n\n")
-                    elif arg == '--cd':
-                        print("CD - Command to change directory\nDirectory name as an argument\n\n")
+                    elif arg == '--':
+                        print(" - Command to change directory\nDirectory name as an argument\n\n")
                     elif arg == '--crctl':
                         print("MKDIR - Command to create a directory\nDirectory name as an argument\n\n")
                     elif arg == '--rmctl':
@@ -434,7 +439,7 @@ while True:
                         print("<CLEAR    > clear screen")
                         print("<LS       > view the contents of the current directory")
                         print("<WIA      > view the path to the current directory")
-                        print("<CD       > change directory")
+                        print("<       > change directory")
                         print("<CRCTL    > create a directory")
                         print("<RMCTL    > delete directory")
                         print("<RM       > delete selected file")
@@ -471,12 +476,15 @@ while True:
                     clear()
 
                 elif lex.lower() == 'cd':
-                        try:
-                            os.chdir(arg)
-                        except FileNotFoundError:
-                            print("Directory " + arg + " not found")
-                        except:
-                            print("An unexpected error has occurred :/")
+                        if arg == '~':
+                            os.chdir(lib_platform.path_userhome)
+                        else:
+                            try:
+                                os.chdir(arg)
+                            except FileNotFoundError:
+                                print("Directory " + arg + " not found")
+                            except:
+                                print("An unexpected error has occurred :/")
 
                 elif lex.lower() == 'mkdir':
                     try:
@@ -569,27 +577,18 @@ while True:
                             print('An unknown error has occurred :/')
         
             while True:
+                if os.getcwd() == lib_platform.path_userhome:
+                    cursor = (Fore.RED + lib_platform.username + "@" + lib_platform.hostname + Fore.RESET + " ~#: ")
+                else:
+                    cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + " #: ")
+
+
                 user = input(cursor)
                 if lexer(user): break
 
 
 
-    except KeyboardInterrupt:
-            while True:
-                    clear()
-                    update_req(lang, req)
-                    break
 
-    except ModuleNotFoundError:
-            while True:
-                clear()
-                install_req(lang, req)
-                break
 
     except NameError:
-        if lang == 'rus':
-            print('Произошла неизвестная ошибка :/')
-        elif lang == 'eng':
-            print('An unknown error has occurred :/')
-    
-        sys.exit()
+        print(":P")
