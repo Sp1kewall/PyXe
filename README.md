@@ -1,4 +1,4 @@
-2.4
+2.5
 
 
 
@@ -13,13 +13,11 @@ Training:
 To get a list of all commands, write the command HELP or help
 
 Innovations:
-1. Changed appearance.
-2. Added the ability to install directly on a PC without using the source code (so far only for WINDOWS users)
-3. Fixed and completed some lines of code that no one reads anyway
+    Minor cosmetic changes
 
 
 ===============================
-Version as of 06/09/2023 - 2.4
+Version as of 25/09/2023 - 2.5
 
 
 
@@ -34,9 +32,7 @@ PyXe (Python eXecution environment)
 Чтобы получить список всех команд напишите команду HELP или help
 
 Нововведения:
-1. Изменён внешний вид.
-2. Добавлена возможность установки прямо на ПК не используя исходный код (пока-что только для пользователей WINDOWS)
-3. Исправлены и доделаны некоторые строчки кода которые всё равно никто не читает
+    Небольшие косметические изменения
 
 ===============================
-Версия на 06/09/2023 - 2.4
+Версия на 25/09/2023 - 2.5
