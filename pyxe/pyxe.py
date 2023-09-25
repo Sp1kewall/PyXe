@@ -1,5 +1,5 @@
-ver = "2.4"
-
+ver = "2.5"
+special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
 while True:
     try:
         import os, sys
@@ -184,12 +184,13 @@ while True:
 
                 elif lex.lower() == 'ls':
                     try:
-                        rez = sorted(os.listdir("."))
-                        for n, item in enumerate(rez):
-                            if os.path.isdir(item):
-                                    print(Back.GREEN + item)
-                            elif os.path.isfile(item):
-                                    print(item)
+                        print((special[6]*8) + special[3])
+                        for i in os.listdir("."):
+                            if os.path.isdir(i):
+                                print("\t" + special[4], Back.GREEN + i)
+                            else:
+                                print("\t" + special[4], i)
+                        print("")
                     except PermissionError:
                         print('Мне отказано в доступе')
 
@@ -290,13 +291,19 @@ while True:
                     
 
                 elif lex.lower() == 'ver':
-                    print("""
-                |OpenSource                         |
-                |PyXe (Python eXecution environment)|
-                |Сделано Space Core                 |
+                #     print("""
+                # |OpenSource                         |
+                # |PyXe (Python eXecution environment)|
+                # |Сделано Space Core                 |
 
-                __________________________
-                         Версия """ + ver + "\n\n")
+                # __________________________
+                #          Версия """ + ver + "\n\n")
+                    print("\n\n                " + special[2] + (special[6]*35) + special[3] + """
+                │OpenSource                         │
+                │PyXe (Python eXecution environment)│
+                │Сделано Space Core                 │
+                """
+                + special[0] + (special[6]*35) + special[1] + "\n   \tВерсия ~-~ " + ver)
 
 
                 elif lex.lower() == 'exit':
@@ -461,12 +468,14 @@ while True:
 
                 elif lex.lower() == 'ls':
                     try:
-                        rez = sorted(os.listdir("."))
-                        for n, item in enumerate(rez):
-                            if os.path.isdir(item):
-                                print(Back.GREEN + item)
-                            elif os.path.isfile(item):
-                                print(item)
+                        special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
+                        print((special[6]*8) + special[3])
+                        for i in os.listdir("."):
+                            if os.path.isdir(i):
+                                print("\t" + special[4], Back.GREEN + i)
+                            else:
+                                print("\t" + special[4], i)
+                        print("")
                     except PermissionError:
                         print('I was denied access')
 
@@ -553,13 +562,19 @@ while True:
                     
 
                 elif lex.lower() == 'ver':
-                    print("""
-                |OpenSource                         |
-                |PyXe (Python eXecution environment)|
-                |Made by Space Core                 |
+                #     print("""
+                # |OpenSource                         |
+                # |PyXe (Python eXecution environment)|
+                # |Made by Space Core                 |
             
-                __________________________
-                     Version """ + ver + "\n")
+                # __________________________
+                #      Version """ + ver + "\n")
+                    print("\n\n                " + special[2] + (special[6]*35) + special[3] + """
+                │OpenSource                         │
+                │PyXe (Python eXecution environment)│
+                │Made by Space Core                 │
+                """
+                + special[0] + (special[6]*35) + special[1] + "\n   \tVersion ~-~ " + ver)
 
                 elif lex.lower() == 'exit':
                     print("Exit...\nBye! Have a good day! :)\n\n")
