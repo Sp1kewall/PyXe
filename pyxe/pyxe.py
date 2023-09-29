@@ -1,27 +1,29 @@
-ver = "2.5"
+ver = "2.6"
 special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
 while True:
     try:
         import os, sys
         from os import name
-        from os import path
         import lib_platform
         from colorama import init, Fore
         from colorama import Back
         import wget
         import shutil
+        from prompt_toolkit import prompt
+        from prompt_toolkit.formatted_text import HTML
 
         def clear():
-            c = 'clear'
-            if name == 'nt': c = 'cls'
-            os.system(c)
+            if name == 'nt':
+                os.system('cls')
+            else:
+                os.system('clear')
 
         try:
-            lang0 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'r')
+            lang0 = open(lib_platform.path_userhome + "/PyXes/pies/lang.pie", 'r')
             lang = lang0.read()
         except:
             while True:
-                if os.path.isfile(lib_platform.path_userhome + "/PyXes pies/lang.pie"):
+                if os.path.isfile(lib_platform.path_userhome + "/PyXes/pies/lang.pie") and os.path.isdir(lib_platform.path_userhome + "/PyXes/pies"):
                     break
                 else:
                     lang_status = "1"
@@ -32,8 +34,9 @@ while True:
                 \t 1.Русский (Russian)
                 \t 2.English (Английский)
                 $:""")
-                    os.mkdir(lib_platform.path_userhome + "/PyXes pies")
-                    lang01 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'w')
+                    os.mkdir(lib_platform.path_userhome + "/PyXes")
+                    os.mkdir(lib_platform.path_userhome + "/PyXes/pies")
+                    lang01 = open(lib_platform.path_userhome + "/PyXes/pies/lang.pie", 'w')
                     if lang_ask == '1':
                         lang01.write('rus')
                     elif lang_ask == '2':
@@ -41,7 +44,7 @@ while True:
                     else:
                         pass
                     lang01.close()
-                    lang01 = open(lib_platform.path_userhome + "/PyXes pies/lang.pie", 'r')
+                    lang01 = open(lib_platform.path_userhome + "/PyXes/pies/lang.pie", 'r')
                     lang = lang01.read()
 
 
@@ -53,58 +56,48 @@ while True:
 
             def runfile(x):
                     try:
-                        if name == 'nt':
-                            os.system(x)
-                        else:
-                            os.startfile(x)
+                        os.startfile(x)
                     except:
                             print(x + " не команда и не исполняемый файл")
 
             def file(arg):
-                if name == 'nt':
-                        try:
-                            file_path = arg
-                            if path.exists(file_path):
-                                print("\n\tФайл уже существует!")
-                                ans = input("\nВы хотите использовать этот файл? (y/n)\n$:")
-                                if ans == 'y' or ans == 'Y':
-                                    file = open(file_path, "a")
-                                    ans = input("\nВы хотите переписать всё содержимое? (y/n)\n$:")
-                                    if ans == 'y' or ans == 'Y':
-                                        print("\n\tСтирание...\n")
-                                        file.seek(0)
-                                        file.truncate()
-                                    else:
-                                        pass
+                if name == 'nt:':
+                    filename = arg
+                    try:
+                        clear()
+                        if os.path.isfile(filename):
+                            f = open(filename, 'r', encoding='utf-8')
+                            fff = f.read()
+                        else:
+                            fff = ''
+                        inp = prompt('~ ', multiline=True, default='%s' % "".join(fff), prompt_continuation=prompt_continuation, bottom_toolbar=bottom_toolbar(filename))
 
-                                else:
-                                    exit()
-                            else:
-                                print("\n\tСоздание нового файла...\n")
-                                file = open(file_path, "a")
-                            print("\nНажмите RETURN чтобы начать редактировать следующую строку.\nНажмите Ctrl + C чтобы сохранить и закрыть файл.\n\n")
-                            line_count = 1
-                            while line_count > 0:
-                                try: 
-                                    line = input("\t" + str(line_count) + " ")
-                                    file.write(line)
-                                    file.write('\n')
-                                    line_count += 1
-                                except KeyboardInterrupt:
-                                    print("\n\n\tЗакрытие...")
-                                    break
+                        if ("%s" % inp) == fff:
+                            pass
+                        else:
+                            save = input("\n\nСохранить изменения?\n (y/n)> ")
+                            if save == 'y':
+                                fl = open(filename, 'w', encoding='utf-8')
+                                fl.writelines("%s" % inp)
+                                fl.close()
+                            elif save == 'n':
+                                pass
+                    except PermissionError:
+                        print("[ALERT] - Плохой путь к файлу")
 
-                            file.close()
-                        except FileNotFoundError:
-                                print("Файл " + arg + " не может быть найден или редактирован")
+                    except UnicodeDecodeError:
+                        print("[ALERT] - Ошибка юникода")
+                    except FileNotFoundError:
+                            print("Файл " + arg + " не может быть найден или редактирован")
+                else:
+                    os.system('nano ' + arg)
 
+            def bottom_toolbar(filename):
+                return HTML(filename + ' | Alt+Enter or Esc+Enter - Exit')
 
+            def prompt_continuation(width, line_number, is_soft_wrap):
+                return ' ' * width
 
-                elif name == 'posix' or name == 'mac':
-                    os.system("nano " + arg)
-
-
- 
 
 
             init(autoreset=True)
@@ -162,8 +155,8 @@ while True:
                         print("<LS       > просмотреть содержимое текущей директории")
                         print("<WIA      > просмотреть путь к текущей директории")
                         print("<CD       > сменить директорию")
-                        print("<CRCTL    > создать директорию")
-                        print("<RMCTL    > удалить директорию")
+                        print("<MKDIR    > создать директорию")
+                        print("<RMDIR    > удалить директорию")
                         print("<RM       > удалить выбранный файл")
                         print("<FILE     > открыть текстовый редактор")
                         print("<TOUCH    > создать файл без редактирования")
@@ -323,10 +316,8 @@ while True:
             
             while True:
 
-                if os.getcwd() == lib_platform.path_userhome:
-                    cursor = (Fore.RED + lib_platform.username + "@" + lib_platform.hostname + Fore.RESET + " ~#: ")
-                else:
-                    cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + " #: ")
+
+                cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
 
                 user = input(cursor)
                 if lexer(user): break
@@ -336,54 +327,41 @@ while True:
 
             def runfile(x):
                     try:
-                        if name == 'nt':
-                            os.system(x)
-                        else:
-                            os.startfile(x)
+                        os.startfile(x)
                     except:
                         print(x + " is not a command or an executable")
 
             def file(arg):
                 if name == 'nt':
-                        try:
-                            file_path = arg
-                            if path.exists(file_path):
-                                print("\n\tThe file already exists!")
-                                ans = input("\nDo you want to use this file? (y/n)\n$:")
-                                if ans == 'y' or ans == 'Y':
-                                    file = open(file_path, "a")
-                                    ans = input("\nDo you want to overwrite all content? (y/n)\n$:")
-                                    if ans == 'y' or ans == 'Y':
-                                        print("\n\tСтирание...\n")
-                                        file.seek(0)
-                                        file.truncate()
-                                    else:
-                                        pass
+                    filename = arg
+                    try:
+                        clear()
+                        if os.path.isfile(filename):
+                            f = open(filename, 'r', encoding='utf-8')
+                            fff = f.read()
+                        else:
+                            fff = ''
+                        inp = prompt('~ ', multiline=True, default='%s' % "".join(fff), prompt_continuation=prompt_continuation, bottom_toolbar=bottom_toolbar(filename))
 
-                                else:
-                                    exit()
-                            else:
-                                print("\n\tCreating a new file....\n")
-                                file = open(file_path, "a")
-                            print("\nPress RETURN to start editing the next line.\nPress Ctrl + C to save and close the file.\n\n")
-                            line_count = 1
-                            while line_count > 0:
-                                try: 
-                                    line = input("\t" + str(line_count) + " ")
-                                    file.write(line)
-                                    file.write('\n')
-                                    line_count += 1
-                                except KeyboardInterrupt:
-                                    print("\n\n\tClosing...")
-                                    break
+                        if ("%s" % inp) == fff:
+                            pass
+                        else:
+                            save = input("\n\nSave file?\n (y/n)> ")
+                            if save == 'y':
+                                fl = open(filename, 'w', encoding='utf-8')
+                                fl.writelines("%s" % inp)
+                                fl.close()
+                            elif save == 'n':
+                                pass
+                    except PermissionError:
+                        print("[ALERT] - Bad file path")
 
-                            file.close()
-                        except FileNotFoundError:
-                                print("File " + arg + " cannot be found or edited")
-
-
-                elif name == 'posix' or name == 'mac':
-                    os.system("nano " + arg)
+                    except UnicodeDecodeError:
+                        print("[ALERT] - Bad unicode")
+                    except FileNotFoundError:
+                            print("File " + arg + " cannot be found or edited")
+                else:
+                    os.system('nano ' + arg)
         
 
 
@@ -447,8 +425,8 @@ while True:
                         print("<LS       > view the contents of the current directory")
                         print("<WIA      > view the path to the current directory")
                         print("<CD       > change directory")
-                        print("<CRCTL    > create a directory")
-                        print("<RMCTL    > delete directory")
+                        print("<MKDIR    > create a directory")
+                        print("<RMDIR    > delete directory")
                         print("<RM       > delete selected file")
                         print("<FILE     > open text editor")
                         print("<TOUCH    > create file without editing")
@@ -468,7 +446,6 @@ while True:
 
                 elif lex.lower() == 'ls':
                     try:
-                        special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
                         print((special[6]*8) + special[3])
                         for i in os.listdir("."):
                             if os.path.isdir(i):
@@ -500,7 +477,7 @@ while True:
                         os.mkdir(arg)
                     except OSError:
                         print("Directory cannot be named " + arg)
-                elif lex == 'rmdir' or lex == 'RMDIR':
+                elif lex.lower() == 'rmdir':
                         try:
                                 shutil.rmtree(arg)
                         except FileNotFoundError:
@@ -592,10 +569,7 @@ while True:
                             print('An unknown error has occurred :/')
         
             while True:
-                if os.getcwd() == lib_platform.path_userhome:
-                    cursor = (Fore.RED + lib_platform.username + "@" + lib_platform.hostname + Fore.RESET + " ~#: ")
-                else:
-                    cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + " #: ")
+                cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
 
 
                 user = input(cursor)
@@ -607,3 +581,9 @@ while True:
 
     except NameError:
         print(":P")
+
+    except AttributeError:
+        if lang == 'rus':
+            print("Некорректный ввод >:(")
+        elif lang == 'eng':
+            print("Invalid input >:(")
