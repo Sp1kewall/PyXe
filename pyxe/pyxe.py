@@ -362,6 +362,14 @@ while True:
                             print("File " + arg + " cannot be found or edited")
                 else:
                     os.system('nano ' + arg)
+                    
+            def bottom_toolbar(filename):
+                return HTML(filename + ' | Alt+Enter or Esc+Enter - Exit')
+
+            def prompt_continuation(width, line_number, is_soft_wrap):
+                return ' ' * width
+
+
         
 
 
