@@ -235,13 +235,6 @@ while True:
                     
 
                 elif lex.lower() == 'ver':
-                #     print("""
-                # |OpenSource                         |
-                # |PyXe (Python eXecution environment)|
-                # |Made by Space Core                 |
-            
-                # __________________________
-                #      Version """ + ver + "\n")
                     print("\n\n                " + special[2] + (special[6]*35) + special[3] + """
                 │OpenSource                         │
                 │PyXe (Python eXecution environment)│
@@ -263,6 +256,7 @@ while True:
                             print("Name error. Perhaps when trying to open a supposed file called " + arg + ", PyXe was horrified because this file was not found")
                         except:
                             print('An unknown error has occurred :/')
+
         
             while True:
                 cursor = (Fore.RED + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
