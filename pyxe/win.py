@@ -229,13 +229,7 @@ while True:
                 
 
             elif lex.lower() == 'ver':
-                print("""
-            |OpenSource                         |
-            |PyXe (Python eXecution environment)|
-            |Made by Space Core                 |
-        
-            __________________________
-                 Version """ + ver + "\n")
+                    print("PyXe ver - " + ver)
 
             elif lex.lower() == 'exit':
                 print("Exit...\nBye! Have a good day! :)\n\n")
