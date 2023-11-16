@@ -84,34 +84,34 @@ while True:
         
             def shell(lex,arg):
 
-                if lex == 'help' or lex == 'HELP':
-                    if arg == '--say':
+                if lex.lower() == 'help':
+                    if arg.lower() == '--say':
                         print("SAY - Command for displaying text/math on the screen\nSpecify text or mathematical action as an argument\n\n")
-                    elif arg == '--clear':
+                    elif arg.lower() == '--clear':
                         print("CLEAR - Command to clear the screen\n\n")
-                    elif arg == '--ls':
+                    elif arg.lower() == '--ls':
                         print("LS - Command to view the contents of a directory. If the object is highlighted in green, then this is a directory\n\n")
-                    elif arg == '--wia':
+                    elif arg.lower() == '--wia':
                         print("WIA - Command to display the current path\n\n")
-                    elif arg == '--':
+                    elif arg.lower() == '--':
                         print("CD - Command to change directory\nDirectory name as an argument\n\n")
-                    elif arg == '--crctl':
+                    elif arg.lower() == '--crctl':
                         print("MKDIR - Command to create a directory\nDirectory name as an argument\n\n")
-                    elif arg == '--rmctl':
+                    elif arg.lower() == '--rmctl':
                         print("RMDIR - Command to remove a directory\nDirectory name as an argument\n\n")
-                    elif arg == '--rm':
+                    elif arg.lower() == '--rm':
                         print("RM - Command to delete a file\nThe file name is given as an argument")
-                    elif arg == '--file':
+                    elif arg.lower() == '--file':
                         print("FILE - Command to open a text editor (on macOS and Linux it's nano, on Windows it's a built-in editor)\nThe file name is given as an argument\n\n")
-                    elif arg == '--touch':
+                    elif arg.lower() == '--touch':
                         print("TOUCH - Command to create a file without editing\nThe file name is given as an argument\n\n")
-                    elif arg == '--cat':
+                    elif arg.lower() == '--cat':
                         print("CAT - Command to display the contents of a file\nThe file name is given as an argument\n\n")
-                    elif arg == "--ver":
+                    elif arg.lower() == "--ver":
                         print("VER - Command to display version information\n\n")
-                    elif arg == '--cp':
+                    elif arg.lower() == '--cp':
                         print("CP - Command for copying a file from one directory to another (if a file is specified in the second argument, then the contents of the first argument will be copied to it)\nSpecify the file to be copied as the first argument. Specify the final path in the second argument\n\n")
-                    elif arg == '--wget':
+                    elif arg.lower() == '--wget':
                         print("WGET - Command to download a file from the Internet\nSpecify the download link in the argument\n\n")
                     else:
                         print("<HELP     > list commands")
