@@ -1,6 +1,6 @@
-PyXe (Python eXecution environment)
-===============================
-Just my terminal
+# PyXe (Python eXecution environment)
+
+## Just my terminal
 
 Innovations:
 
