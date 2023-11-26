@@ -1,38 +1,12 @@
-2.5
-
-
-
-__________________________________________________________________________
-                                                ENG
-__________________________________________________________________________
-
 PyXe (Python eXecution environment)
 Just my terminal
 
-Training:
-To get a list of all commands, write the command HELP or help
-
 Innovations:
-    Minor cosmetic changes
 
+To reduce the size of the source code file, all language settings and the languages ​​themselves were removed. Only English remains
 
+Now when you start the shell, version information is displayed on the screen
+
+I'm ditching binaries entirely and going back to source since I can't produce executables for all platforms (especially Linux)
 ===============================
-Version as of 25/09/2023 - 2.5
-
-
-
-__________________________________________________________________________
-                                                RUS
-__________________________________________________________________________
-
-PyXe (Python eXecution environment)
-Просто мой терминал
-
-Обучение:                                                        
-Чтобы получить список всех команд напишите команду HELP или help
-
-Нововведения:
-    Небольшие косметические изменения
-
-===============================
-Версия на 25/09/2023 - 2.5
+Version as of 05/11/2023 - 2.7
