@@ -12,4 +12,4 @@ I'm ditching binaries entirely and going back to source since I can't produce ex
 
 ===============================
 
-Version as of 05/11/2023 - 2.7
+Version as of 26/11/2023 - 2.8
