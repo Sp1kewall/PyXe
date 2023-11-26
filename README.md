@@ -1,15 +1,38 @@
-# PyXe (Python eXecution environment)
+2.5
 
-## Just my terminal
 
->Innovations:
 
->Fixed some bugs
+__________________________________________________________________________
+                                                ENG
+__________________________________________________________________________
 
->Changed color palette
+PyXe (Python eXecution environment)
+Just my terminal
 
->Improved Help
+Training:
+To get a list of all commands, write the command HELP or help
+
+Innovations:
+    Minor cosmetic changes
+
 
 ===============================
+Version as of 25/09/2023 - 2.5
 
-Version as of 16/11/2023 - 2.8
+
+
+__________________________________________________________________________
+                                                RUS
+__________________________________________________________________________
+
+PyXe (Python eXecution environment)
+Просто мой терминал
+
+Обучение:                                                        
+Чтобы получить список всех команд напишите команду HELP или help
+
+Нововведения:
+    Небольшие косметические изменения
+
+===============================
+Версия на 25/09/2023 - 2.5
