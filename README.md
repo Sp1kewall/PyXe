@@ -10,4 +10,5 @@ Now when you start the shell, version information is displayed on the screen
 I'm ditching binaries entirely and going back to source since I can't produce executables for all platforms (especially Linux)
 
 ===============================
+
 Version as of 05/11/2023 - 2.7
