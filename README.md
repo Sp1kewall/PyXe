@@ -1,4 +1,4 @@
-# PyXe (Python eXecution environment)
+# PyXe command shell
 
 ## Just my terminal
 
