@@ -1,5 +1,4 @@
-ver = "2.8"
-print("PyXe ver - " + ver)
+ver = "2.9"
 import os, sys
 import lib_platform
 
@@ -156,8 +155,10 @@ while True:
                                 print("\t" + special[4], Fore.BLUE + i)
                     print("")
                 except PermissionError:
+                    print("")
                     print('I was denied access')
                     print("You can run me as ROOT (sudo)")
+                    print("")
 
             elif lex.lower() == 'wia':
                 print(os.getcwd())
@@ -197,8 +198,10 @@ while True:
                     try:
                         os.mkdir(arg)
                     except OSError:
+                        print("")
                         print("Directory cannot be named " + arg)
                         print('Use help --mkdir to get more information')
+                        print("")
             elif lex.lower() == 'rmdir':
                     if arg == '':
                         print("")
@@ -296,14 +299,20 @@ while True:
                         user0 = user.split(' ')
                         shutil.copy2(user0[1], user0[2])
                     except FileNotFoundError:
+                        print("")
                         print("I can't found " + user0[1] + " or " + user0[2])
+                        print("")
                     except IndexError:
+                        print("")
                         print("Not enough arguments!")
+                        print("")
                     except PermissionError:
                         try:
                             shutil.copytree(user0[1], user0[2])
                         except:
+                            print("")
                             print("I cannot move this object")
+                            print("")
 
             elif lex.lower() == 'wget':
                 if arg == "":
@@ -315,13 +324,21 @@ while True:
                     print("Trying to download a file...\n")
                     try:
                         wget.download(arg)
+                        print("")
                         print("\nFile downloaded!\n")
+                        print("")
                     except:
+                        print("")
                         print("\nFailed to download file. Maybe it's damaged or you don't have an internet connection\n")
+                        print("")
                 
 
             elif lex.lower() == 'ver':
-                    print("PyXe ver - " + ver)
+                #if arg == '-a' or arg == "--all":
+                    #print("""
+                    #    """)
+                #else:
+                    print("PyXe version - " + ver)
 
             elif lex.lower() == 'exit':
                 print("Exit...\nBye! Have a good day! :)\n\n")
@@ -337,10 +354,14 @@ while True:
                         if arg == "":
                             pass
                         else:
+                            print("")
                             print("Name error. Perhaps when trying to open a supposed file called " + arg + ", PyXe was horrified because this file was not found")
+                            print("")
                     except:
+                        print("")
                         print('An unknown error has occurred :/')
-    
+                        print("")
+
         while True:
             cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
             user = input(cursor)
@@ -353,7 +374,9 @@ while True:
             print("")
 
     except AttributeError:
+            print("")
             print("Invalid input >:(")
+            print("")
     
     except KeyboardInterrupt:
         print("")
