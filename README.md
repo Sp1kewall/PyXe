@@ -1,3 +1,4 @@
+![](https://preview.redd.it/khmbk7809f6c1.gif)
 # PyXe command shell
 
 ## Just my terminal
