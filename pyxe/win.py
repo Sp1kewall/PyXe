@@ -1,4 +1,4 @@
-ver = "2.9"
+ver = "3.0"
 import os, sys
 import lib_platform
 
@@ -109,7 +109,8 @@ while True:
                 elif arg.lower() == '--wget':
                     print("WGET - Command to download a file from the Internet\nSpecify the download link in the argument\n\n")
                 else:
-                    print("\n<HELP     > list commands")
+                    print("")
+                    print("<HELP     > list commands")
                     print("<SAY      > output some text")
                     print("<CLEAR    > clear screen")
                     print("<LS       > view the contents of the current directory")
@@ -123,7 +124,8 @@ while True:
                     print("<CAT      > output the contents of the file")
                     print("<CP       > copy the file to some location or file")
                     print('<WGET     > download file from internet')
-                    print("<VER      > view terminal version\n")
+                    print("<VER      > view terminal version")
+                    print("")
 
 
             elif lex.lower() == 'say':
@@ -161,7 +163,7 @@ while True:
                     print("")
 
             elif lex.lower() == 'wia':
-                print(os.getcwd())
+                print("\n" + os.getcwd() + "\n")
             elif lex.lower() == 'clear':
                 clear()
 
@@ -286,32 +288,32 @@ while True:
                         print("File " + arg + " not found")
                         print("")
 
-                
-
             elif lex.lower() == 'cp':
-                if arg == "":
-                    print("")
-                    print("Bad filename")
-                    print('Use help --cp to get more information')
-                    print("")
-                else:
-                    try:
-                        user0 = user.split(' ')
-                        shutil.copy2(user0[1], user0[2])
-                    except FileNotFoundError:
+                    if arg == "":
                         print("")
-                        print("I can't found " + user0[1] + " or " + user0[2])
+                        print("Bad filename")
+                        print('Use help --cp to get more information')
                         print("")
-                    except IndexError:
-                        print("")
-                        print("Not enough arguments!")
-                        print("")
-                    except PermissionError:
+                    else:
                         try:
-                            shutil.copytree(user0[1], user0[2])
-                        except:
+                            user0 = user.split(' ')
+                            shutil.copy2(user0[1], user0[2])
+                        except FileNotFoundError:
                             print("")
-                            print("I cannot move this object")
+                            print("I can't found " + user0[1] + " or " + user0[2])
+                            print("")
+                        except IndexError:
+                            print("")
+                            print("Not enough arguments!")
+                            print("")
+                        except PermissionError:
+                            print("")
+                            print('I was denied access')
+                            print("You can run me as ROOT (sudo)")
+                            print("")
+                        except IsADirectoryError:
+                            print("")
+                            print("This is the directory\nUse help --cp command to get more information")
                             print("")
 
             elif lex.lower() == 'wget':
@@ -334,10 +336,6 @@ while True:
                 
 
             elif lex.lower() == 'ver':
-                #if arg == '-a' or arg == "--all":
-                    #print("""
-                    #    """)
-                #else:
                     print("PyXe version - " + ver)
 
             elif lex.lower() == 'exit':
@@ -363,7 +361,7 @@ while True:
                         print("")
 
         while True:
-            cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
+            cursor = ("┌" + lib_platform.username + " " + Fore.MAGENTA + os.getcwd() + Fore.RESET + "\n└>")
             user = input(cursor)
             if lexer(user): break
 
