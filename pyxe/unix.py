@@ -1,19 +1,14 @@
 #!/usr/bin/python3
-ver = "2.9"
+ver = "3.0"
 import os, sys
 import lib_platform
-
 
 from colorama import init, Fore
 import wget
 import shutil
 
-
 from prompt_toolkit import prompt
 from prompt_toolkit.formatted_text import HTML
-
-
-
 
 special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
 
@@ -21,18 +16,8 @@ while True:
     try:
         def clear():
             os.system('clear')
-            
-        def clear():
-            os.system('clear')
-            
-            def runfile(x):
-                try:
-                    os.startfile(x)
-                except:
-                    print("")
-                    print(x + " is not a command or an executable")
-                    print("Try to use help command to get more information")
-                    print("")
+
+        def runfile(x):
                 try:
                     os.startfile(x)
                 except:
@@ -41,7 +26,7 @@ while True:
                     print("Try to use help command to get more information")
                     print("")
 
-            def file(arg):
+        def file(arg):
                 filename = arg
                 try:
                     clear()
@@ -63,32 +48,23 @@ while True:
                         elif save == 'n':
                             pass
                 except PermissionError:
-                    print("Bad file path")
+                    print('I was denied access')
 
                 except UnicodeDecodeError:
                     print("Bad unicode")
+
                 except FileNotFoundError:
                         print("File " + arg + " cannot be found or edited")
                     
-            def bottom_toolbar(filename):
+        def bottom_toolbar(filename):
                 return HTML(filename + ' | Alt+Enter or Esc+Enter - Exit')
 
-            def prompt_continuation(width, line_number, is_soft_wrap):
+        def prompt_continuation(width, line_number, is_soft_wrap):
                 return ' ' * width
-        
 
-            cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
-            cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
+        init(autoreset=True)
 
-
-            init(autoreset=True)
-
-
-
-
-
-        
-            def lexer(c):
+        def lexer(c):
                 lex=''
                 arg=''
                 l=True 
@@ -102,7 +78,7 @@ while True:
                 return shell(lex,arg)
                 
                 
-            def shell(lex,arg):
+        def shell(lex,arg):
 
                 if lex.lower() == 'help':
                     if arg.lower() == '--say':
@@ -110,7 +86,6 @@ while True:
                     elif arg.lower() == '--clear':
                         print("CLEAR - Command to clear the screen\n\n")
                     elif arg.lower() == '--ls':
-                        print("LS - Command to view the contents of a directory.\nIf the object's font is green, then it is a directory. If blue - file\n\n")
                         print("LS - Command to view the contents of a directory.\nIf the object's font is green, then it is a directory. If blue - file\n\n")
                     elif arg.lower() == '--wia':
                         print("WIA - Command to display the current path\n\n")
@@ -136,7 +111,6 @@ while True:
                         print("WGET - Command to download a file from the Internet\nSpecify the download link in the argument\n\n")
                     else:
                         print("\n<HELP     > list commands")
-                        print("\n<HELP     > list commands")
                         print("<SAY      > output some text")
                         print("<CLEAR    > clear screen")
                         print("<LS       > view the contents of the current directory")
@@ -150,9 +124,6 @@ while True:
                         print("<CAT      > output the contents of the file")
                         print("<CP       > copy the file to some location or file")
                         print('<WGET     > download file from internet')
-                        print("<VER      > view terminal version\n")
-
-
                         print("<VER      > view terminal version\n")
 
 
@@ -173,33 +144,12 @@ while True:
                             print("")
                         except NameError:
                             print(arg)
-                    if arg == "":
-                        print("")
-                        print("Bad argument\nUse help --say to get more information")
-                        print("")
-                    else:
-                        try:
-                            print(eval(arg))
-                        except SyntaxError:
-                            print(arg)
-                        except ZeroDivisionError:
-                            print("")
-                            print("Can't divide by zero")
-                            print("Use help --say to get more information")
-                            print("")
-                        except NameError:
-                            print(arg)
 
                 elif lex.lower() == 'ls':
                     try:
                         print("")
-                        print("")
                         print((special[6]*8) + special[3])
                         for i in os.listdir("."):
-                                if os.path.isdir(i):
-                                    print("\t" + special[4], Fore.GREEN + i)
-                                else:
-                                    print("\t" + special[4], Fore.BLUE + i)
                                 if os.path.isdir(i):
                                     print("\t" + special[4], Fore.GREEN + i)
                                 else:
@@ -213,31 +163,11 @@ while True:
 
                 elif lex.lower() == 'wia':
                     print(os.getcwd())
+                    
                 elif lex.lower() == 'clear':
                     clear()
 
                 elif lex.lower() == 'cd':
-                        if arg == "":
-                            print("")
-                            print("Bad directory name")
-                            print('Use help --cd to get more information')
-                            print("")
-                        else:
-                            if arg == '~':
-                                os.chdir(lib_platform.path_userhome)
-                            else:
-                                try:
-                                    os.chdir(arg)
-                                except FileNotFoundError:
-                                    print("")
-                                    print("Directory " + arg + " not found")
-                                    print('Use help --cd to get more information')
-                                    print("")
-                                except NotADirectoryError:
-                                    print("")
-                                    print(arg + " is not a directory")
-                                    print('Use help --cd to get more information')
-                                    print("")
                         if arg == "":
                             print("")
                             print("Bad directory name")
@@ -270,19 +200,10 @@ while True:
                         try:
                             os.mkdir(arg)
                         except OSError:
+                            print("")
                             print("Directory cannot be named " + arg)
                             print('Use help --mkdir to get more information')
-                    if arg == '':
-                        print("")
-                        print("Bad directory name")
-                        print("Use help --mkdir to get more information")
-                        print("")
-                    else:
-                        try:
-                            os.mkdir(arg)
-                        except OSError:
-                            print("Directory cannot be named " + arg)
-                            print('Use help --mkdir to get more information')
+                            print("")
                 elif lex.lower() == 'rmdir':
                         if arg == '':
                             print("")
@@ -303,17 +224,6 @@ while True:
                                     print('Use help --rmdir to get more information')
                                     print("")
 
-                            except FileNotFoundError:
-                                print("")
-                                print("Directory " + arg + " not found")
-                                print('Use help --rmdir to get more information')
-                                print("")
-                            except OSError:
-                                    print("")
-                                    print("Directory cannot be named " + arg)
-                                    print('Use help --rmdir to get more information')
-                                    print("")
-
                 elif lex.lower() == 'file':
                     if arg == "":
                         print("")
@@ -322,34 +232,8 @@ while True:
                         print("")
                     else:
                         file(arg)
-                    if arg == "":
-                        print("")
-                        print("Bad filename")
-                        print('Use help --file to get more information')
-                        print("")
-                    else:
-                        file(arg)
+
                 elif lex.lower() == 'cat':
-                    if arg == "":
-                        print("")
-                        print("Bad filename")
-                        print('Use help --cat to get more information')
-                        print("")
-                    else:
-                        try:
-                            f = open(arg, 'r')
-                            print(f.read())
-                            f.close()
-                        except UnicodeDecodeError:
-                            print("")
-                            print("File " + arg + " cannot be found, read or edited")
-                            print('Use help --cat to get more information')
-                            print("")
-                        except FileNotFoundError:
-                            print("")
-                            print("File " + arg + " not found")
-                            print('Use help --cat to get more information')
-                            print("")
                     if arg == "":
                         print("")
                         print("Bad filename")
@@ -383,13 +267,9 @@ while True:
                     else:
                         try:
                             os.remove(arg)
-                            os.remove(arg)
                         except FileNotFoundError:
                             print("")
-                            print("")
                             print("File " + arg + " not found")
-                            print('Use help --rm to get more information')
-                            print("")
                             print('Use help --rm to get more information')
                             print("")
 
@@ -409,21 +289,6 @@ while True:
                             print("")
                             print("File " + arg + " not found")
                             print("")
-                    if arg == "":
-                        print("")
-                        print("Bad filename")
-                        print('Use help --touch to get more information')
-                        print("")
-                    else: 
-                        try:
-                            with open(arg, 'w') as lol1:
-                                lol1.close()
-                        except FileNotFoundError:
-                            print("")
-                            print("File " + arg + " not found")
-                            print("")
-
-                    
 
                 elif lex.lower() == 'cp':
                     if arg == "":
@@ -444,12 +309,14 @@ while True:
                             print("Not enough arguments!")
                             print("")
                         except PermissionError:
-                            try:
-                                shutil.copytree(user0[1], user0[2])
-                            except:
-                                print("")
-                                print("I cannot move this object")
-                                print("")
+                            print("")
+                            print('I was denied access')
+                            print("You can run me as ROOT (sudo)")
+                            print("")
+                        except IsADirectoryError:
+                            print("")
+                            print("This is the directory\nUse help --cp command to get more information")
+                            print("")
 
                 elif lex.lower() == 'wget':
                     if arg == "":
@@ -472,7 +339,6 @@ while True:
 
                 elif lex.lower() == 'ver':
                         print("PyXe ver - " + ver)
-                        print("PyXe ver - " + ver)
 
                 elif lex.lower() == 'exit':
                     print("Exit...\nBye! Have a good day! :)\n\n")
@@ -481,11 +347,10 @@ while True:
                 else:
                     try:
                         eval(arg)
-                        eval(arg)
                     except SyntaxError:
                         try:
                             runfile(user)
-                        except NameError():
+                        except NameError:
                             if arg == "":
                                 pass
                             else:
@@ -497,17 +362,12 @@ while True:
                             print('An unknown error has occurred :/')
                             print("")
         
-            while True:
-                cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
-                cursor = (Fore.LIGHTYELLOW_EX + lib_platform.username + ":(" + os.getcwd() + ")" + Fore.RESET + "\n#: ")
+        while True:
+                cursor = ("┌ " + lib_platform.username + " " + Fore.MAGENTA + os.getcwd() + Fore.RESET + "\n└> ")
                 user = input(cursor)
                 if lexer(user): break
 
     except NameError:
-            print("")
-            print("It is not a command or an executable")
-            print("Try to use help command to get more information")
-            print("")
             print("")
             print("It is not a command or an executable")
             print("Try to use help command to get more information")
