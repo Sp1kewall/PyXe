@@ -361,7 +361,7 @@ while True:
                         print("")
 
         while True:
-            cursor = ("┌" + lib_platform.username + " " + Fore.MAGENTA + os.getcwd() + Fore.RESET + "\n└>")
+            cursor = ("┌ " + lib_platform.username + " " + Fore.MAGENTA + os.getcwd() + Fore.RESET + "\n└> ")
             user = input(cursor)
             if lexer(user): break
 
