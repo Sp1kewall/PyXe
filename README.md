@@ -4,8 +4,9 @@
 
 Innovations:
 
-Minor cosmetic changes
+1. Fixed some bugs
+2. Changed appearance
 
 ===============================
 
-Version as of 15/12/2023 - 2.9
+Version as of 10.01.2024 - 3.0
