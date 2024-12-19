@@ -1,0 +1,9 @@
+
+Hello world module!!!
+ 
+This is a test module that plays the role of a sample third-party module. It accepts all arguments you pass to it and will display the following:
+‘Hello world!’
+‘Your argument is {arguments}’
+
+If no arguments are specified, it will display:
+‘Hello world!’
