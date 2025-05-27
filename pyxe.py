@@ -78,11 +78,19 @@ def new_good_path(path: str, part_of_path: str, new_root: str = "~") -> str:
     return f"{new_root}{tmp}"
 
 
-def runfile(step_command: str, arguments: str = None):
+def runfile(step_command: str, arguments: list = None):
     '''### Programs and modules launch function'''
     try:
         if os.path.exists(f"{modules_path}/{step_command}.py"):
-            os.system(f"{modules_path}/{step_command}.py {arguments}")
+            tmp_args = ""
+
+            for i in range(len(arguments)):
+                if arguments[i] == arguments[-1]:
+                    tmp_args += f"{arguments[i]}"
+                else:
+                    tmp_args += f"{arguments[i]} "
+
+            os.system(f"{modules_path}/{step_command}.py {tmp_args}")
         else:
             print(step_command + " is not a command or an executable")
             print("Try to use help command to get more information")
