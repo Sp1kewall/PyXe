@@ -94,6 +94,7 @@ def runfile(step_command: str, arguments: list = None):
         else:
             print(step_command + " is not a command or an executable")
             print("Try to use help command to get more information")
+            
     except BaseException:
         print(step_command + " is not a command or an executable")
         print("Try to use help command to get more information")
