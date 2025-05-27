@@ -1,18 +1,16 @@
-from colorama import init, Fore
-import shutil
-import wget
 from prompt_toolkit.shortcuts import message_dialog
 from prompt_toolkit.shortcuts import yes_no_dialog
 from prompt_toolkit.shortcuts import input_dialog
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit import prompt
-import lib_platform
-import sys
-import os
+
+from colorama import init, Fore
+import sys, os, getpass, socket, wget, shutil, pathlib
 
 # Version
-ver = "2.9"
+ver = "3.0"
+
 
 def clear():
     '''### Function to clear the console'''
@@ -22,17 +20,22 @@ def clear():
         os.system('clear')
 
 
-clear()
+if "--path:" in "".join(sys.argv):
+    temp_path = ("".join(sys.argv[1:])).split("--path:")
+    os.chdir(temp_path[-1])
+
+if "--clear" in sys.argv or "-c" in sys.argv:
+    clear()
 
 # Decorative symbols
 special = ["└", "┘", "┌", "┐", "├", "┤", "─", "│"]
 
 # Path for service directories
-modules_path = f"{lib_platform.path_userhome}{os.sep}PyXe{os.sep}Modules"
+modules_path = f"{pathlib.Path.home()}{os.sep}PyXe{os.sep}Modules"
 
 # Checking for PyXe service directories in the user's home directory
-if os.path.exists(f"{lib_platform.path_userhome}{os.sep}PyXe") == False:
-    os.mkdir(f"{lib_platform.path_userhome}{os.sep}PyXe")
+if os.path.exists(f"{pathlib.Path.home()}{os.sep}PyXe") == False:
+    os.mkdir(f"{pathlib.Path.home()}{os.sep}PyXe")
     os.mkdir(modules_path)
 
 elif os.path.exists(modules_path) == False:
@@ -41,27 +44,31 @@ else:
     pass
 
 
+
 init(autoreset=True)
 
-# Welcome message
-print(f"Welcome to PyXe command shell [{ver}]")
-print(f"""
-* Download:   {Fore.LIGHTBLUE_EX}https://github.com/Sp1kewall/PyXe/releases{Fore.RESET}
 
-* Modules:    {lib_platform.path_userhome}{os.sep}PyXe{os.sep}Modules
-* History:    {lib_platform.path_userhome}{os.sep}PyXe{os.sep}history.txt
-""")
+
+if "--welcome" in sys.argv or "-w" in sys.argv:
+    # Welcome message
+    print(f"Welcome to PyXe command shell [{ver}]")
+    print(f"""
+    * Download:   {Fore.LIGHTBLUE_EX}https://github.com/Sp1kewall/PyXe/releases{Fore.RESET}
+
+    * Modules:    {pathlib.Path.home()}{os.sep}PyXe{os.sep}Modules
+    * History:    {pathlib.Path.home()}{os.sep}PyXe{os.sep}history.txt
+    """)
 
 
 
 def save_to_history(log: str):
     '''### Input history saving function'''
     if os.path.exists(
-            f"{lib_platform.path_userhome}{os.sep}PyXe{os.sep}history.txt"):
-        with open(f"{lib_platform.path_userhome}{os.sep}PyXe{os.sep}history.txt", "a", encoding="utf-8") as tmp_history_log:
+            f"{pathlib.Path.home()}{os.sep}PyXe{os.sep}history.txt"):
+        with open(f"{pathlib.Path.home()}{os.sep}PyXe{os.sep}history.txt", "a", encoding="utf-8") as tmp_history_log:
             tmp_history_log.writelines(str(log) + "\n")
     else:
-        with open(f"{lib_platform.path_userhome}{os.sep}PyXe{os.sep}history.txt", "w", encoding="utf-8") as tmp_history_log:
+        with open(f"{pathlib.Path.home()}{os.sep}PyXe{os.sep}history.txt", "w", encoding="utf-8") as tmp_history_log:
             tmp_history_log.writelines(str(log) + "\n")
 
 
@@ -154,15 +161,17 @@ def editor(filename: str = None):
 try:
     while True:
         current_path = os.getcwd()
-        if os.getcwd() == lib_platform.path_userhome:
+        if os.getcwd() == f"{pathlib.Path.home()}":
             current_path = "~"
-        elif lib_platform.path_userhome in os.getcwd():
-            
+        elif f"{pathlib.Path.home()}" in os.getcwd():
             # Console cursor (home directory)
-            current_path = new_good_path(path=os.getcwd(), part_of_path=lib_platform.path_userhome, new_root="~")
+            current_path = new_good_path(path=os.getcwd(), part_of_path=f"{pathlib.Path.home()}", new_root="~")
 
         # Console cursor
-        cursor = ("[" + Fore.LIGHTBLACK_EX + lib_platform.username + Fore.RESET + ":" + Fore.LIGHTBLACK_EX + lib_platform.hostname_short + Fore.RESET + "]" + Fore.YELLOW + " " + current_path + Fore.RESET + " $: ")
+        cursor = ("[" + Fore.LIGHTBLACK_EX + getpass.getuser() + Fore.RESET + ":" + Fore.LIGHTBLACK_EX + socket.gethostname() + Fore.RESET + "]" + Fore.YELLOW + " " + current_path + Fore.RESET + " $: ")
+        
+        if len(cursor) > 100:
+            cursor = ("[" + Fore.LIGHTBLACK_EX + getpass.getuser() + Fore.RESET + ":" + Fore.LIGHTBLACK_EX + socket.gethostname() + Fore.RESET + "]" + Fore.YELLOW + " " + current_path + Fore.RESET + "\n$: ")
         
         # Main input function
         user = input(cursor)
@@ -284,7 +293,11 @@ try:
             clear()
 
         elif lex.lower() == 'ls':
+            print("")
             try:
+                if len(os.listdir(".")) < 1:
+                    print("Directory is empty")
+
                 print((special[6] * 8) + special[3])
                 for i in os.listdir("."):
                     if os.path.isdir(i):
@@ -309,7 +322,7 @@ try:
                 print('Use help --cd to get more information')
             else:
                 tmp_output0 = tmp_output.replace(
-                    "~", lib_platform.path_userhome)
+                    "~", f"{pathlib.Path.home()}")
 
                 try:
                     os.chdir(tmp_output0)
@@ -465,10 +478,10 @@ try:
             print("")
 
         elif lex.lower() == "login":
-            print(lib_platform.get_username)
+            print(getpass.getuser())
 
         elif lex.lower() == "host":
-            print(lib_platform.hostname)
+            print(socket.gethostname())
 
         elif lex.lower() == 'exit':
             print("Exit...\n\n")
