@@ -348,9 +348,24 @@ try:
                 print("Bad directory name")
                 print("Use help --mkdir to get more information")
             else:
-
+                arg[0] = arg[0].replace("~", f"{pathlib.Path.home()}")
+                print(arg[0])
                 try:
-                    os.mkdir(tmp_output)
+                    arg[0] = arg[0].replace("/", os.sep)
+
+                    CoolPath = arg[0].split(os.sep)
+
+                    none = ""
+
+                    for j in CoolPath:
+                        if os.path.exists(none + j):
+                            none += f"{j}/"
+                        
+                        else:
+                            os.mkdir(none + j)
+                            none += f"{j}/"
+
+
                 except OSError:
                     print(f"Directory cannot be named {tmp_output}")
                     print('Use help --mkdir to get more information')
