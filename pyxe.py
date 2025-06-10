@@ -349,7 +349,6 @@ try:
                 print("Use help --mkdir to get more information")
             else:
                 arg[0] = arg[0].replace("~", f"{pathlib.Path.home()}")
-                print(arg[0])
                 try:
                     arg[0] = arg[0].replace("/", os.sep)
 
