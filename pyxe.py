@@ -168,8 +168,8 @@ def editor(filename: str = None):
         pass
 
 # PyXe main code
-try:
-    while True:
+while True:
+    try:
         current_path = os.getcwd()
         if os.getcwd() == f"{pathlib.Path.home()}":
             current_path = "~"
@@ -525,5 +525,10 @@ try:
             except BaseException:
                 print('An unknown error has occurred :/')
 
-except KeyboardInterrupt:
-    print("\nExit...\n\n")
+    except KeyboardInterrupt:
+        print("\nExit...\n\n")
+        exit()
+
+
+    except PermissionError:
+        print("Permission denied")
