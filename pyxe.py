@@ -90,7 +90,8 @@ def runfile(step_command: str, arguments: list = None):
                 else:
                     tmp_args += f"{arguments[i]} "
 
-            os.system(f"{modules_path}/{step_command}.py {tmp_args}")
+            if os.name == "posix": os.system(f"python3 {modules_path}/{step_command}.py {tmp_args}")
+            if os.name == "nt": os.system(f"{modules_path}/{step_command}.py {tmp_args}")
         else:
             print(step_command + " is not a command or an executable")
             print("Try to use help command to get more information")
@@ -485,6 +486,7 @@ try:
                     print("\nFile downloaded!\n")
                 except BaseException:
                     print("\nFailed to download file. Maybe it's damaged or you don't have an internet connection\n")
+                    
             print("")
 
         elif lex.lower() == "doc":
@@ -498,6 +500,7 @@ try:
 
                 except BaseException:
                     print("Error when reading the documentation")
+
             print("")
 
         elif lex.lower() == "login":
@@ -517,9 +520,10 @@ try:
                 if len(arg) == 0:
                     pass
                 else:
-                    print(
-                        f"Name error. Perhaps when trying to open a supposed file called {arg}, PyXe was horrified because this file was not found")
+                    print(f"Name error. Perhaps when trying to open a supposed file called {arg}, PyXe was horrified because this file was not found")
+
             except BaseException:
                 print('An unknown error has occurred :/')
+
 except KeyboardInterrupt:
     print("\nExit...\n\n")
